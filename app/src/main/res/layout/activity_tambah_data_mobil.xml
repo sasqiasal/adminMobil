@@ -24,7 +24,7 @@
      android:layout_width="match_parent"
      android:layout_height="match_parent">
 
-  <ImageButton
+  <ImageView
       android:id="@+id/addimage"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="Simpan"
-      android:background="@color/birma"
+      android:background="@drawable/rounded_button"
       android:textColor="@color/white"
       android:textStyle="bold"
       android:layout_centerHorizontal="true"

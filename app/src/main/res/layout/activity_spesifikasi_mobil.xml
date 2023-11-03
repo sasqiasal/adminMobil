@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".spesifikasiMobil"
     android:background="@drawable/ic_gradasibgbadan">
+
     <ImageButton
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:background="@null"
         android:contentDescription="back"
-        android:src="@drawable/iconback" />
+        android:src="@drawable/iconback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 <com.google.android.material.card.MaterialCardView
     style="@style/CustomCardViewStyle"
     android:layout_width="match_parent"
@@ -21,32 +24,131 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
+            android:id="@+id/editdata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Spesifikasi Mobil"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Spesifikasi Data Mobil"
             android:textColor="@color/black"
             android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/gambarMobil"
+            android:id="@+id/mobil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editdata"
             android:layout_centerHorizontal="true"
-            tools:srcCompat="@tools:sample/avatars"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="25dp"
+            android:background="@drawable/rounded_image"
+            />
+
+
         <TextView
+            android:id="@+id/mrkmobil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Alpart"
-            android:textSize="40dp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:layout_below="@id/mobil"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="220dp"/>
+            android:layout_marginTop="10dp"
+            android:text="Merek Mobil"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/horisewa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mrkmobil"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/sewa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="20dp"
+                android:text="Harga sewa" />
+
+            <EditText
+                android:id="@+id/hargasewa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="alpart"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horikursi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horisewa"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/kursi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="Jumlah Kursi"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/jumkur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="12"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horikursi"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonedit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/rounded_button"
+                android:text="Edit"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonhapus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/rounded_button"
+                android:text="Hapus"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                tools:layout_marginEnd="0dp" />
+        </LinearLayout>
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>
