@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminMobile"
         tools:targetApi="31">
+        <activity android:name=".tambahjadwal"
+            android:exported="true"/>
         <activity
             android:name=".rincianPesanan"
             android:exported="true" />

@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".daftarPesanan"
     android:background="@drawable/ic_gradasibgbadan">
+
     <ImageButton
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -21,6 +23,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="295dp"
+                android:layout_marginTop="436dp"
+                android:layout_marginEnd="49dp"
+                app:srcCompat="@drawable/plusbulat" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

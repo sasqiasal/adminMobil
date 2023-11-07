@@ -44,8 +44,8 @@
 
     <RelativeLayout
         android:id="@+id/rldatamobil"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rlPesanan"
         android:layout_marginTop="50dp">
 
@@ -57,7 +57,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:src="@drawable/datamobil" />
+           android:layout_centerHorizontal="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/datamobill" />
 
         <TextView
             android:layout_width="wrap_content"
