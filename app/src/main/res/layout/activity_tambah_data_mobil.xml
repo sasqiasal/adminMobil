@@ -79,7 +79,7 @@
       android:text="Harga Sewa Perhari" />
 
   <EditText
-      android:id="@+id/tJumlahKursu"
+      android:id="@+id/tJumlahKursi"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@+id/tHargaSewa"
@@ -92,9 +92,10 @@
       android:minHeight="48dp"
       android:text="Jumlah Kursi" />
   <Button
+      android:id="@+id/simpan"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="Simpan"
+      android:text="simpan"
       android:background="@drawable/rounded_button"
       android:textColor="@color/white"
       android:textStyle="bold"
