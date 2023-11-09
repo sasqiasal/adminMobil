@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
 
     </style>
-    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+    <style name="CustomCardViewStyle" parent="Theme.AdminMobile">
         <item name="cardElevation">100dp</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
     </style>

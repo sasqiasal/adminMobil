@@ -49,7 +49,7 @@
         android:layout_below="@id/rlPesanan"
         android:layout_marginTop="50dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/datamobil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
