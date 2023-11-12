@@ -1,31 +1,24 @@
 package com.example.adminmobile;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
 public class dataMobil extends AppCompatActivity {
-    Button btnCheck;
     ImageButton back;
+    Button tmbh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_mobil);
         FragmentManager fm = getSupportFragmentManager();
-        btnCheck = findViewById(R.id.btnTambah);
         back = findViewById(R.id.back);
-        btnCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popuptambah.newInstance("","").show(fm,"Fragment");
-            }
-        });
-
+        tmbh = findViewById(R.id.btnTambah);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,6 +26,16 @@ public class dataMobil extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        tmbh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(dataMobil.this, tambahDataMobil.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 }

@@ -1,35 +1,51 @@
 package com.example.adminmobile;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.adminmobile.databinding.ActivityTambahDataMobilBinding;
 
 
 public class tambahDataMobil extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageView imageView;
-
+    private ActivityTambahDataMobilBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_data_mobil);
+        binding = ActivityTambahDataMobilBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         imageView = findViewById(R.id.addimage);
-        Button btn = findViewById(R.id.simpan);
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button btn = findViewById(R.id.button);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectImage();
+            }
+        });
+
+        binding.simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(tambahDataMobil.this, "Produk Ditambahkan", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(tambahDataMobil.this, dataMobil.class);
+                intent.putExtra("fragmentToLoad", MainActivity.MODE_APPEND);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -51,10 +67,8 @@ public class tambahDataMobil extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                 imageView.setImageBitmap(bitmap);
-                Toast.makeText(this, "Gambar dipilih!", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(this, "Terjadi kesalahan dalam memuat gambar.", Toast.LENGTH_SHORT).show();
             }
         }
     }
