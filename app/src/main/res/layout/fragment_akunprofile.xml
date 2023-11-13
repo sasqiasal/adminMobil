@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AkunFragment"
-    android:background="@drawable/ic_gradasibgbadan">
+    tools:context=".akunprofile"
+   >
 
     <RelativeLayout
         android:id="@+id/inti"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
         android:background="@drawable/rounded_bgputih"
         app:layout_constraintTop_toTopOf="parent">
 

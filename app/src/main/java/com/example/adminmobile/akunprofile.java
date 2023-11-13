@@ -1,12 +1,13 @@
 package com.example.adminmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +24,7 @@ public class akunprofile extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ImageView satu, dua, tiga, empat;
 
     public akunprofile() {
         // Required empty public constructor
@@ -58,7 +60,50 @@ public class akunprofile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_akunprofile, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_akunprofile, container, false);
+
+        satu = view.findViewById(R.id.btndataakun);
+        dua = view.findViewById(R.id.btntentangmitra);
+        tiga = view.findViewById(R.id.btnpusatbantuan);
+        empat = view.findViewById(R.id.btnsyaratdnaketentuan);
+
+        satu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Intent = new Intent(getContext(), dataprofileActivity.class);
+                startActivity(Intent);
+
+            }
+        });
+
+        dua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Intent = new Intent(getContext(), ProfileMitraActivity.class);
+                startActivity(Intent);
+            }
+        });
+
+        tiga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Intent = new Intent(getContext(), pusatbantuanActivity.class);
+                startActivity(Intent);
+
+            }
+        });
+
+        empat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Intent = new Intent(getContext(), syaratketentuanActivity.class);
+                startActivity(Intent);
+
+            }
+        });
+
+        return view;
     }
 }
