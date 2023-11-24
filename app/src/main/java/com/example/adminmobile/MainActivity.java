@@ -1,22 +1,16 @@
 package com.example.adminmobile;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.adminmobile.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseApp.initializeApp(this);
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -52,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity mainActivity1 = new MainActivity();
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
-                transaction1.replace(R.id.konten, new notifikasi());
+                transaction1.replace(R.id.konten, new Riwayat());
                 transaction1.commit();
             } else if (item.getItemId() == R.id.menu3) {
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
-                transaction1.replace(R.id.konten, new akunprofile());
+                transaction1.replace(R.id.konten, new akunProfile());
                 transaction1.commit();
             }
             return true;

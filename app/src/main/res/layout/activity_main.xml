@@ -62,8 +62,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="@drawable/nav_background_curved"
-        app:itemIconTint="@color/abuicon"
-        app:itemTextColor="@color/abuicon"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         android:backgroundTintMode="@color/white"
         app:menu="@menu/menuhome" />
 

@@ -18,7 +18,7 @@ ImageButton btnback;
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileMitraActivity.this, akunprofile.class);
+                Intent intent = new Intent(ProfileMitraActivity.this, akunProfile.class);
                 startActivity(intent);
             }
         });

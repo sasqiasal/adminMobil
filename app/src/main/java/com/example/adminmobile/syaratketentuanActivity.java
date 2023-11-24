@@ -18,7 +18,7 @@ ImageButton btnback;
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(syaratketentuanActivity.this, akunprofile.class);
+                Intent intent = new Intent(syaratketentuanActivity.this, akunProfile.class);
                 startActivity(intent);
             }
         });

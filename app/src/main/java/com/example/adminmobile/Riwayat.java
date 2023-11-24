@@ -1,19 +1,18 @@
 package com.example.adminmobile;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link notifikasi#newInstance} factory method to
+ * Use the {@link Riwayat#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class notifikasi extends Fragment {
+public class Riwayat extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +23,7 @@ public class notifikasi extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public notifikasi() {
+    public Riwayat() {
         // Required empty public constructor
     }
 
@@ -37,8 +36,8 @@ public class notifikasi extends Fragment {
      * @return A new instance of fragment notifikasi.
      */
     // TODO: Rename and change types and number of parameters
-    public static notifikasi newInstance(String param1, String param2) {
-        notifikasi fragment = new notifikasi();
+    public static Riwayat newInstance(String param1, String param2) {
+        Riwayat fragment = new Riwayat();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
