@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -23,21 +24,24 @@
         android:text="Mobil"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
 
-        android:clickable="false"
-        android:focusable="false"
         android:id="@+id/mobil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:clickable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="Name"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jdlmobil" />
+        app:layout_constraintTop_toBottomOf="@+id/jdlmobil"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/jdltanggal"
@@ -51,19 +55,21 @@
         app:layout_constraintTop_toBottomOf="@+id/mobil" />
 
     <EditText
-        android:clickable="false"
-        android:focusable="false"
         android:id="@+id/tanggal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:clickable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="Name"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jdltanggal" />
+        app:layout_constraintTop_toBottomOf="@+id/jdltanggal"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/jdltujuan"
@@ -77,19 +83,21 @@
         app:layout_constraintTop_toBottomOf="@+id/tanggal" />
 
     <EditText
-        android:clickable="false"
-        android:focusable="false"
         android:id="@+id/tujuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:clickable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="Name"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jdltujuan" />
+        app:layout_constraintTop_toBottomOf="@+id/jdltujuan"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/jdlhari"
@@ -103,19 +111,21 @@
         app:layout_constraintTop_toBottomOf="@+id/tujuan" />
 
     <EditText
-        android:clickable="false"
-        android:focusable="false"
         android:id="@+id/hari"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:clickable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="Name"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jdlhari" />
+        app:layout_constraintTop_toBottomOf="@+id/jdlhari"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/jdltotal"
@@ -129,18 +139,20 @@
         app:layout_constraintTop_toBottomOf="@+id/hari" />
 
     <EditText
-        android:clickable="false"
-        android:focusable="false"
         android:id="@+id/total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:clickable="false"
         android:ems="10"
+        android:focusable="false"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="Name"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jdltotal" />
+        app:layout_constraintTop_toBottomOf="@+id/jdltotal"
+        tools:ignore="TextSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
