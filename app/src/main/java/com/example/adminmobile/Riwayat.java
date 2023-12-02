@@ -1,15 +1,25 @@
 package com.example.adminmobile;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.adminmobile.Adapter.adapterRiwayat;
+import com.example.adminmobile.Model.RiwayatModel;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Riwayat#newInstance} factory method to
+ * Use the {@link RiwayatFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Riwayat extends Fragment {
@@ -22,6 +32,7 @@ public class Riwayat extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView recyclerView;
 
     public Riwayat() {
         // Required empty public constructor
@@ -33,7 +44,7 @@ public class Riwayat extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment notifikasi.
+     * @return A new instance of fragment RiwayatFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static Riwayat newInstance(String param1, String param2) {
@@ -54,10 +65,29 @@ public class Riwayat extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notifikasi, container, false);
+        View view =  inflater.inflate(R.layout.fragment_notifikasi, container, false);
+
+        recyclerView = view.findViewById(R.id.viewriwayat);
+        String firebaseUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        Query query = FirebaseFirestore.getInstance().collection("Booking").whereEqualTo("UID",firebaseUID);
+
+        FirestoreRecyclerOptions<RiwayatModel> option = new FirestoreRecyclerOptions.Builder<RiwayatModel>()
+                .setQuery(query, RiwayatModel.class)
+                .build();
+
+        adapterRiwayat AdapterRiwayat = new adapterRiwayat(option, getContext());
+        recyclerView.setAdapter(AdapterRiwayat);
+        recyclerView.setLayoutManager(new LinearLayoutManager(container != null ? container.getContext() : null, LinearLayoutManager.VERTICAL, false));;
+       AdapterRiwayat.startListening();
+
+        return view;
+
+
     }
 }

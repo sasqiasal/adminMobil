@@ -1,13 +1,13 @@
 package com.example.adminmobile;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,127 +16,233 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
+import com.bumptech.glide.Glide;
+import com.example.adminmobile.databinding.ActivityTambahDataMobilBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 public class tambahDataMobil extends AppCompatActivity {
-    private Button simpan;
-    private EditText MerkMobil,Harga, JmlKursi;
-    private ImageView gambar;
-    Uri uri;
-    ProgressDialog dialog;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private EditText merkmbl, hrgsewa, jmlhkrsi;
+    private ProgressDialog progressDialog;
+    private ImageView imageView;
+    private ActivityTambahDataMobilBinding binding;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage firebaseStorage;
-    private FirebaseDatabase firebaseDatabase;
-    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
+    private FirebaseAuth auth;
+    private  String id = "";
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_data_mobil);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseStorage = FirebaseStorage.getInstance();
-        verifyStoragePermissions(this);
-        dialog = new ProgressDialog(this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Silahkan Menunggu");
-        dialog.setCancelable(false);
-        dialog.setTitle(" sedang diupload");
-        dialog.setCanceledOnTouchOutside(false);
-        simpan = findViewById(R.id.simpan);
-        MerkMobil = findViewById(R.id.tMerkMobil);
-        Harga = findViewById(R.id.tHargaSewa);
-        JmlKursi = findViewById(R.id.tJumlahKursi);
-        gambar = findViewById(R.id.addimage);
-
-
-        simpan.setOnClickListener(view -> {
-            dialog.show();
-            final StorageReference reference = firebaseStorage.getReference().child("Data_Mobil")
-                    .child(System.currentTimeMillis()+"");
-            reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Mobil model = new Mobil();
-                            model.setGambar(uri.toString());
-                            model.setMerekmobil(MerkMobil.getText().toString());
-                            model.setHarga(Harga.getText().toString());
-                            model.setJmlkursi(JmlKursi.getText().toString());
-
-
-                            firebaseDatabase.getReference().child("Mobil").push().setValue(model)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            Toast.makeText(tambahDataMobil.this, "berhasil upload", Toast.LENGTH_SHORT).show();
-                                            dialog.dismiss();
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(tambahDataMobil.this, "gagal upload", Toast.LENGTH_SHORT).show();
-                                            dialog.dismiss();
-                                        }
-                                    });
-
-                        }
-                    });
-                }
-            });
-        });
-        gambar.setOnClickListener(new View.OnClickListener() {
+        binding = ActivityTambahDataMobilBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        merkmbl = findViewById(R.id.tMerkMobil);
+        hrgsewa= findViewById(R.id.tHargaSewa);
+        jmlhkrsi = findViewById(R.id.tJumlahKursi);
+        imageView = findViewById(R.id.addimage);
+        Button btn = findViewById(R.id.button);
+        FirebaseApp.getInstance();
+        auth = FirebaseAuth.getInstance();
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uploadgambar();
+                selectImage();
             }
         });
+        progressDialog = new ProgressDialog(tambahDataMobil.this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Menyimpan...");
+
+
+        binding.simpan.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(merkmbl.getText().length()>0 && hrgsewa.getText().length()>0 &&
+                        jmlhkrsi.getText().length()>0){
+                    saveDataToFirestore(merkmbl.getText().toString(), hrgsewa.getText().toString(),
+                            jmlhkrsi.getText().toString());
+                } else {
+                    Toast.makeText(getApplicationContext(), "Silahkan isi semua data", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        Intent intent = getIntent();
+        if (intent!=null){
+            id = intent.getStringExtra("id");
+            merkmbl.setText(intent.getStringExtra("merkmobil"));
+            hrgsewa.setText(intent.getStringExtra("hargasewa"));
+            jmlhkrsi.setText(intent.getStringExtra("jumlahkursi"));
+            Glide.with(getApplicationContext()).load(intent.getStringExtra("image")).into(imageView);
+        }
     }
+    private void saveData (String MerkMobil, String HargaSewa, String JumlahKursi, String image){
+        Map<String, Object> user = new HashMap<>();
+        user.put("Nama", MerkMobil);
+        user.put("Harga", HargaSewa);
+        user.put("Kursi", JumlahKursi);
+        user.put("Gambar", image);
 
-    private final int REQUEST_WRITE = 1;
-
-    private final String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-    };
-
-    public void verifyStoragePermissions(Activity activity) {
-        int writePermission = ActivityCompat.checkSelfPermission(
-                activity,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        );
-
-        if (writePermission != PackageManager.PERMISSION_GRANTED) {
-            // Request the permission
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_WRITE
-            );
+        progressDialog.show();
+        if (id!=null){
+            db.collection("Data_Mobil").document(id)
+                    .set(user)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Gagal!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }else {
+            db.collection("Data_Mobil")
+                    .add(user)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    });
         }
     }
 
-    private void  Uploadgambar() {
 
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(intent, 101);
-                    }
+    private void selectImage() {
+        final CharSequence[] items = {"Ambil Foto", "Pilih dari Galeri", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(tambahDataMobil.this);
+        builder.setTitle (getString (R.string.app_name));
+        builder.setIcon (R.mipmap.ic_launcher);
+        builder.setItems (items, (dialog, item) -> {
+            if (items [item].equals("Ambil Foto")) {
+                Intent intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 10);
+            } else if (items [item].equals("Pilih dari Galeri")) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser (intent,"Select Image"),20);
+            } else if (items [item].equals("Cancel")) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 101 && resultCode == RESULT_OK){
-            uri = data.getData();
-            gambar.setImageURI(uri);
+
+        if (requestCode == 20 && resultCode == RESULT_OK && data != null) {
+            final Uri path = data.getData();
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        InputStream inputStream = getContentResolver().openInputStream(path);
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        runOnUiThread(() -> {
+                            imageView.setImageBitmap(bitmap);
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            thread.start();
         }
+
+        if (requestCode == 10 && resultCode == RESULT_OK) {
+            final Bundle extras = data.getExtras();
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    Bitmap bitmap = (Bitmap) extras.get("data");
+                    runOnUiThread(() -> {
+                        imageView.setImageBitmap(bitmap);
+                    });
+                }
+            };
+            thread.start();
+        }
+    }
+
+    private void saveDataToFirestore(String MerekMobil, String HargaSewa, String JumlahKursi) {
+        progressDialog.show();
+        imageView.setDrawingCacheEnabled(true);
+        imageView.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference reference = storage.getReference("Data_Mobil").child("IMG"+new Date().getTime()+".jpeg");
+
+        UploadTask uploadTask = reference.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                if(taskSnapshot.getMetadata()!=null){
+                    if(taskSnapshot.getMetadata().getReference()!=null){
+                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                if(task.getResult()!=null) {
+                                    saveData(MerekMobil, HargaSewa, JumlahKursi, task.getResult().toString());
+                                } else {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(getApplicationContext(), "Gagal!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Gagal!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Gagal!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

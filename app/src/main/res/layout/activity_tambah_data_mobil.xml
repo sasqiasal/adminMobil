@@ -36,7 +36,7 @@
       android:layout_marginStart="138dp"
       android:layout_marginTop="36dp"
       android:layout_marginEnd="137dp"
-      android:background="@null"
+      android:background="@color/birma"
       android:contentDescription="addimage"
       android:src="@drawable/addimage" />
 
@@ -75,7 +75,7 @@
       android:layout_marginTop="5dp"
       android:layout_marginEnd="50dp"
       android:ems="10"
-      android:inputType="text"
+      android:inputType="number"
       android:minHeight="48dp"
       android:hint="Harga Sewa Perhari" />
 
@@ -89,7 +89,7 @@
       android:layout_marginTop="5dp"
       android:layout_marginEnd="50dp"
       android:ems="10"
-      android:inputType="text"
+      android:inputType="number"
       android:minHeight="48dp"
       android:hint="Jumlah Kursi" />
 
