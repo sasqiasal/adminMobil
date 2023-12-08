@@ -41,7 +41,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/inputtnama"
+                    android:id="@+id/inputnama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tambah"
@@ -52,13 +52,13 @@
                     android:ems="10"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:text="Nama Pemesan" />
+                    android:hint="Nama Pemesan" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/inputtnama"
+                    android:layout_below="@id/inputnama"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
@@ -273,7 +273,7 @@
 
                     <Spinner
                         android:id="@+id/spinnerlist"
-                        android:layout_width="110dp"
+                        android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="40dp"
                         android:hint="Pilih mobil" />
@@ -293,6 +293,19 @@
                     android:text="Tambah Jadwal"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/total_days"
+                    android:layout_width="103dp"
+                    android:layout_height="49dp"
+                    android:layout_below="@+id/card4"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="37dp"
+                    android:layout_marginEnd="90dp"
+                    android:gravity="center"
+                    android:hint="Hari "
+                    android:textSize="17dp" />
 
             </RelativeLayout>
         </ScrollView>

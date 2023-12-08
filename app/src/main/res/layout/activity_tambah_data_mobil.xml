@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tambahDataMobil"
+    tools:context=".TambahMobil"
     android:background="@drawable/ic_gradasibgbadan">
 
  <ImageButton
@@ -46,7 +46,7 @@
       android:layout_height="wrap_content"
       android:layout_centerHorizontal="true"
       android:layout_marginTop="10dp"
-      android:text="Tambah Data Mobil"
+      android:text="Data Mobil"
       android:textColor="@color/black"
       android:textSize="25dp"
       android:textStyle="bold" />

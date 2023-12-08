@@ -10,7 +10,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class detailRiwayat extends AppCompatActivity {
+public class DetailRiwayatBokingAdmin extends AppCompatActivity {
     EditText tvTujuan, tvNama, tvTanggal, tvHari, tvTotal;
 
     @SuppressLint("MissingInflatedId")
@@ -18,7 +18,7 @@ public class detailRiwayat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        setContentView(R.layout.deatil_riwayat);
+        setContentView(R.layout.deatil_riwayatbokingadmin);
         tvNama = findViewById(R.id.mobil);
         tvTujuan = findViewById(R.id.tujuan);
         tvTanggal = findViewById(R.id.tanggal);

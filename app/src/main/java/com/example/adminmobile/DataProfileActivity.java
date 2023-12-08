@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class dataprofileActivity extends AppCompatActivity {
+public class DataProfileActivity extends AppCompatActivity {
 
     private EditText nama, alamat, nomor;
     ImageButton back;
@@ -28,7 +28,7 @@ public class dataprofileActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(dataprofileActivity.this, akunProfile.class);
+                Intent intent = new Intent(DataProfileActivity.this, AkunProfile.class);
                 startActivity(intent);
             }
         });

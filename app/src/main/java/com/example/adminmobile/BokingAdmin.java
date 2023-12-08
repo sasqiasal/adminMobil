@@ -1,6 +1,5 @@
 package com.example.adminmobile;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -32,13 +31,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 
-public class tambahjadwal extends AppCompatActivity {
+public class BokingAdmin extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -47,7 +49,7 @@ public class tambahjadwal extends AppCompatActivity {
     String IDMobil;
 
     private TextView editTanggalkembali, editTanggalpinjam;
-    private EditText editPenjemputan, editTujuan, editNamamobil, editBahanbakar;
+    private EditText editPenjemputan, editTujuan, editNamamobil, editNama;
     private Spinner spinerr;
     private ImageButton balek;
     private ArrayList<String> arrayMobil;
@@ -59,18 +61,20 @@ public class tambahjadwal extends AppCompatActivity {
 
 
 
-    @SuppressLint("MissingInflatedId")
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rincian_pesanan);
+        setContentView(R.layout.activity_bokingadmin);
         mAuth = FirebaseAuth.getInstance();
 
         spinerr = findViewById(R.id.spinnerlist);
         editPenjemputan = findViewById(R.id.txtPenjemputan);
         editTujuan = findViewById(R.id.txtTujuan);
-        editTanggalpinjam = findViewById(R.id.txtTglPinjam);
-        editTanggalkembali = findViewById(R.id.txtTglKembali);
+        editNama = findViewById(R.id.inputnama);
+        editTanggalpinjam = findViewById(R.id.txtTanggalPinjam);
+        editTanggalkembali = findViewById(R.id.txtTanggalKembali);
 
 
         btnsimpan = findViewById(R.id.buttontambahjadwal);
@@ -80,30 +84,20 @@ public class tambahjadwal extends AppCompatActivity {
 
         arrayMobil = new ArrayList<>();
 
-        progressDialog = new ProgressDialog(tambahjadwal.this);
+        progressDialog = new ProgressDialog(BokingAdmin.this);
         progressDialog.setTitle("Proses");
         progressDialog.setMessage("Sabar Bolooo.....");
 
         getDataSpin();
-
-
-
-
         adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, arrayMobil);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinerr.setAdapter(adapter);
 
 
-
-
-
-
-
-
         balek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inten = new Intent(tambahjadwal.this, MainActivity.class);
+                Intent inten = new Intent(BokingAdmin.this, MainActivity.class);
                 startActivity(inten);
             }
         });
@@ -187,26 +181,26 @@ public class tambahjadwal extends AppCompatActivity {
         return generateAutoId();
     }
 
-//    private long calculateTotalDays() {
-//        String pickUpDateawl = editTanggalpinjam.getText().toString();
-//        String returnDateakhr = editTanggalkembali.getText().toString();
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-//        try {
-//            Date pickUpDate1 = sdf.parse(pickUpDateawl);
-//            Date returnDate2 = sdf.parse(returnDateakhr);
-//
-//            long diffInMilliseconds = returnDate2.getTime() - pickUpDate1.getTime();
-//            hri = diffInMilliseconds / (24 * 60 * 60 * 1000); // Convert milidetik ke hari
-//            totalHari = hri + 1;
-//
-//         //   TextView totalDaysTextView = findViewById(R.id.total_days);
-//           // totalDaysTextView.setText(String.valueOf(totalHari));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return totalHari;
-//    }
+    private long calculateTotalDays() {
+        String pickUpDateawl = editTanggalpinjam.getText().toString();
+        String returnDateakhr = editTanggalkembali.getText().toString();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        try {
+            Date pickUpDate1 = sdf.parse(pickUpDateawl);
+            Date returnDate2 = sdf.parse(returnDateakhr);
+
+            long diffInMilliseconds = returnDate2.getTime() - pickUpDate1.getTime();
+            hri = diffInMilliseconds / (24 * 60 * 60 * 1000); // Convert milidetik ke hari
+            totalHari = hri + 1;
+
+            TextView totalDaysTextView = findViewById(R.id.total_days);
+            totalDaysTextView.setText(String.valueOf(totalHari));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return totalHari;
+    }
 
 
     private void getDataSpin(){
@@ -246,28 +240,27 @@ public class tambahjadwal extends AppCompatActivity {
         btnsimpan.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                String Namapemesanan= editNama.getText().toString().trim();
                 String penjemputan = editPenjemputan.getText().toString().trim();
                 String tujuan = editTujuan.getText().toString().trim();
                 String tglpinjam = editTanggalpinjam.getText().toString().trim();
                 String tglkembali= editTanggalkembali.getText().toString().trim();
                 String mobil = spinerr.getSelectedItem().toString();
-                String bbm = "iya";
-//                String mobilhr = spinerr.getSelectedItem().toString();
+//              String mobilhr = spinerr.getSelectedItem().toString();
 
                 Log.d("onClick", "onClick: idMobil" + IDMobil);
                 if(penjemputan.isEmpty()){
                     editPenjemputan.setError("penjemputan tidak boleh kosong");
                 } else if (tujuan.isEmpty()) {
                     editTujuan.setError("tujuan tidak boleh kosong");
+                }else if (Namapemesanan.isEmpty()) {
+                    editNama.setError("tujuan tidak boleh kosong");
                 } else if (tglpinjam.isEmpty()) {
                     editTanggalpinjam.setError("pilih tanggal pinjam");
                 } else if (tglkembali.isEmpty()) {
                     editTanggalkembali.setError("pilih tanggal pinjam");
                 } else if (mobil.isEmpty()) {
                     editNamamobil.setError("pilih mobil yang diinginkan");
-                } else if (bbm.isEmpty()) {
-                    editBahanbakar.setError("pilih bbm");
                 }else{
                     db.collection("Data_Mobil").whereEqualTo("Nama",spinerr.getSelectedItem().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -278,32 +271,28 @@ public class tambahjadwal extends AppCompatActivity {
                         }
                     });
                     Map<String, Object> user = new HashMap<>();
-                   // long hari = calculateTotalDays();
+                    long hari = calculateTotalDays();
                     user.put("Penjemputan", penjemputan);
                     user.put("Tujuan", tujuan);
                     user.put("TanggalPinjam", tglpinjam);
                     user.put("TanggalKembali", tglkembali);
                     user.put("IDMobil", IDMobil);
-                    user.put("BahanBakar", bbm);
-                //    user.put("JumlahHari", hari);
-                    user.put("UID", mAuth.getCurrentUser().getUid());
+                    user.put("JumlahHari", hari);
 
-
-                    CollectionReference dbReff = db.collection("Booking");
+                    CollectionReference dbReff = db.collection("Boking_Admin");
 
 
 
                     dbReff.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Intent intent = new Intent(tambahjadwal.this, rincianPesanan.class);
+                            Intent intent = new Intent(BokingAdmin.this, RincianBokingAdmin.class);
+                            intent.putExtra("Namapemesanan", Namapemesanan);
                             intent.putExtra("Tujuan",tujuan);
                             intent.putExtra("TanggalPinjam", tglpinjam);
                             intent.putExtra("TanggalKembali", tglkembali);
                             intent.putExtra("IDMobil", IDMobil);
-                            intent.putExtra("BahanBakar", bbm);
-                        //    intent.putExtra("JumlahHari", hari);
-                            intent.putExtra("UID", mAuth.getCurrentUser().getUid());
+                            intent.putExtra("JumlahHari", hari);
                             intent.putExtra("DocumentID",documentReference.getId());
 
 

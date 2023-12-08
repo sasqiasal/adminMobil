@@ -2,8 +2,8 @@ package com.example.adminmobile.Model;
 
 import com.google.firebase.firestore.DocumentId;
 
-public class RiwayatModel {
-    private String NamaMobil, Hari, Total;
+public class RiwayatBokingAdminModel {
+    private String Nama, NamaMobil, Hari, Total;
     private String Tujuan;
     private String TanggalPinjam;
 
@@ -14,13 +14,15 @@ public class RiwayatModel {
     @DocumentId
     private String documentId;
 
-    public RiwayatModel() {
+    public RiwayatBokingAdminModel() {
         this.documentId = null;
+        this.Nama ="";
         this.TanggalPinjam = "";
         this.NamaMobil = "";
         this.Tujuan="";
     }
-
+    public String getNama(){return Nama;}
+    public void setNama(String Nama){this.Nama=Nama;}
     public String getNamaMobil() {
         return NamaMobil;
     }

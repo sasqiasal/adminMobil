@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adminmobile.Adapter.adapterMobil;
+import com.example.adminmobile.Adapter.AdapterMobil;
 import com.example.adminmobile.Model.Mobil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +28,7 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class dataMobil extends AppCompatActivity {
+public class DataMobil extends AppCompatActivity {
     ImageButton back;
     Button tmbh;
     RecyclerView recyclerView;
@@ -37,6 +37,7 @@ public class dataMobil extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<Mobil> list = new ArrayList<>();
     private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +57,7 @@ public class dataMobil extends AppCompatActivity {
                 .build();
 
 
-
-        adapterMobil recyclerAdapter = new adapterMobil(option, this);
+        AdapterMobil recyclerAdapter = new AdapterMobil(option, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
@@ -74,16 +74,17 @@ public class dataMobil extends AppCompatActivity {
                 }
                 recyclerAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(dataMobil.this, "gagal" + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DataMobil.this, "gagal" + error, Toast.LENGTH_SHORT).show();
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(dataMobil.this, home.class);
+                Intent intent = new Intent(DataMobil.this, Home.class);
                 startActivity(intent);
             }
         });
@@ -91,12 +92,10 @@ public class dataMobil extends AppCompatActivity {
         tmbh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(dataMobil.this, tambahDataMobil.class);
+                Intent intent = new Intent(DataMobil.this, TambahMobil.class);
                 startActivity(intent);
             }
         });
 
-
-
+        }
     }
-}

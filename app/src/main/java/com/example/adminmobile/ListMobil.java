@@ -12,6 +12,7 @@ public class ListMobil extends AppCompatActivity {
 
     TextView Merk, Detail;
     ImageView Mobil;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,13 +20,14 @@ public class ListMobil extends AppCompatActivity {
         setContentView(R.layout.listmobil);
         Merk = findViewById(R.id.merek);
         Detail=findViewById(R.id.detail);
-
         Mobil = findViewById(R.id.mobil);
+
 
         Picasso.get().load(getIntent().getStringExtra("Mobil"))
                 .placeholder(R.drawable.addimage)
                 .into(Mobil);
         Merk.setText(getIntent().getStringExtra("Merk"));
         Detail.setText(getIntent().getStringExtra("Detail"));
+
     }
 }

@@ -40,7 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class tambahDataMobil extends AppCompatActivity {
+public class TambahMobil extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private EditText merkmbl, hrgsewa, jmlhkrsi;
@@ -70,7 +70,7 @@ public class tambahDataMobil extends AppCompatActivity {
                 selectImage();
             }
         });
-        progressDialog = new ProgressDialog(tambahDataMobil.this);
+        progressDialog = new ProgressDialog(TambahMobil.this);
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Menyimpan...");
 
@@ -91,10 +91,10 @@ public class tambahDataMobil extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent!=null){
             id = intent.getStringExtra("id");
-            merkmbl.setText(intent.getStringExtra("merkmobil"));
-            hrgsewa.setText(intent.getStringExtra("hargasewa"));
-            jmlhkrsi.setText(intent.getStringExtra("jumlahkursi"));
-            Glide.with(getApplicationContext()).load(intent.getStringExtra("image")).into(imageView);
+            merkmbl.setText(intent.getStringExtra("namaMobil"));
+            hrgsewa.setText(intent.getStringExtra("harga"));
+            jmlhkrsi.setText(intent.getStringExtra("kursi"));
+            Glide.with(getApplicationContext()).load(intent.getStringExtra("gambar")).into(imageView);
         }
     }
     private void saveData (String MerkMobil, String HargaSewa, String JumlahKursi, String image){
@@ -143,7 +143,7 @@ public class tambahDataMobil extends AppCompatActivity {
 
     private void selectImage() {
         final CharSequence[] items = {"Ambil Foto", "Pilih dari Galeri", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(tambahDataMobil.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(TambahMobil.this);
         builder.setTitle (getString (R.string.app_name));
         builder.setIcon (R.mipmap.ic_launcher);
         builder.setItems (items, (dialog, item) -> {

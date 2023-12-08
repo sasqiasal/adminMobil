@@ -18,51 +18,48 @@
         android:theme="@style/Theme.AdminMobile"
         tools:targetApi="31">
         <activity
-            android:name=".masuk"
+            android:name=".Login"
             android:exported="false" />
+        <activity android:name=".BokingAdmin"
+            android:exported="false"/>
 
-        <activity
-            android:name=".tambahjadwal"
-            android:exported="false" />
-        <activity
-            android:name=".dataprofileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileMitraActivity"
-            android:exported="false" />
-        <activity
-            android:name=".syaratketentuanActivity"
-            android:exported="false" />
-        <activity
-            android:name=".pusatbantuanActivity"
-            android:exported="false" />
-        <activity
-            android:name=".akunProfile"
-            android:exported="false" />
-        <activity
-            android:name=".rincianPesanan"
-            android:exported="false" />
-        <activity
-            android:name=".daftarPesanan"
-            android:exported="false" />
-        <activity
-            android:name=".spesifikasiMobil"
-            android:exported="false" />
-        <activity
-            android:name=".editDataMobil"
-            android:exported="false" />
-        <activity
-            android:name=".tambahDataMobil"
-            android:exported="false" />
-        <activity
-            android:name=".dataMobil"
-            android:exported="false" />
+        <activity android:name=".DataProfileActivity"
+            android:exported="false"/>
 
+        <activity android:name=".ProfileMitraActivity"
+            android:exported="false"/>
+
+        <activity android:name=".SyaratKetentuanActivity"
+            android:exported="false"/>
+
+        <activity android:name=".PusatBantuanActivity"
+            android:exported="false"/>
+
+        <activity android:name=".AkunProfile"
+            android:exported="false"/>
+        <activity
+            android:name=".RincianBokingAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".DaftarBokingAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".SpesifikasiMobil"
+            android:exported="false" />
+        <activity
+            android:name=".EditDataMobil"
+            android:exported="false" />
+        <activity
+            android:name=".TambahMobil"
+            android:exported="false" />
+        <activity
+            android:name=".DataMobil"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".daftar"
+            android:name=".Register"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

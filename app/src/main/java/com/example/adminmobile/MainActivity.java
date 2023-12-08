@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity mainActivity = new MainActivity();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.konten, new home());
+        transaction.replace(R.id.konten, new Home());
         transaction.commit();
 
         BottomNavigationView bottomNavigationView;
@@ -40,19 +40,19 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("menu1", "onNavigationItemSelected: yes");
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
-                transaction1.replace(R.id.konten, new home());
+                transaction1.replace(R.id.konten, new Home());
                 transaction1.commit();
                 return true;
             } else if (item.getItemId() == R.id.menu2) {
                 MainActivity mainActivity1 = new MainActivity();
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
-                transaction1.replace(R.id.konten, new Riwayat());
+                transaction1.replace(R.id.konten, new RiwayatBokingAdmin());
                 transaction1.commit();
             } else if (item.getItemId() == R.id.menu3) {
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
-                transaction1.replace(R.id.konten, new akunProfile());
+                transaction1.replace(R.id.konten, new AkunProfile());
                 transaction1.commit();
             }
             return true;

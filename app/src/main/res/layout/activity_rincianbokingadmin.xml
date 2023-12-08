@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rincianPesanan"
+    tools:context=".RincianBokingAdmin"
     android:background="@drawable/ic_gradasibgbadan">
+
     <RelativeLayout
         android:id="@+id/relativeLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:background="@drawable/rounded_bgputih"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
 
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
@@ -34,21 +38,20 @@
             android:layout_marginTop="65dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="583dp"
-            android:text="Tujuan"
+            android:text="Nama Penyewa"
             android:textSize="20dp"
             android:textStyle="italic" />
 
         <EditText
-            android:clickable="false"
-
-            android:id="@+id/txtTujuan"
+            android:id="@+id/txtNamaPenyewa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="528dp"
-            android:hint="tujuan"
+            android:clickable="false"
+            android:hint="Nama Penyewa"
             android:inputType="text"
             android:textSize="20dp"
             android:textStyle="italic" />
@@ -60,20 +63,20 @@
             android:layout_marginTop="165dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="483dp"
-            android:text="Tanggal Pinjam"
+            android:text="Tujuan"
             android:textSize="20dp"
             android:textStyle="italic" />
 
         <EditText
-            android:clickable="false"
-            android:id="@+id/txtTglPinjam"
+            android:id="@+id/txtTujuan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="200dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="428dp"
-            android:hint="Tanggal"
+            android:clickable="false"
+            android:hint="Tujuan"
             android:inputType="date"
             android:textSize="20dp"
             android:textStyle="italic" />
@@ -85,19 +88,19 @@
             android:layout_marginTop="260dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="388dp"
-            android:text="Tanggal Kembali"
+            android:text="Tanggal Pinjam"
             android:textSize="20dp"
             android:textStyle="italic" />
 
         <EditText
-            android:clickable="false"
-            android:id="@+id/txtTglKembali"
+            android:id="@+id/txttglpinjam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="290dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="338dp"
+            android:clickable="false"
             android:hint="Tanggal"
             android:inputType="date"
             android:textSize="20dp"
@@ -110,20 +113,20 @@
             android:layout_marginTop="350dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="298dp"
-            android:text="Jenis Mobil"
+            android:text="Tanggal Kembali"
             android:textSize="20dp"
             android:textStyle="italic" />
 
         <EditText
-            android:clickable="false"
-            android:id="@+id/txtmobil"
+            android:id="@+id/txtTglKembali"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="380dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="248dp"
-            android:hint="Mobil"
+            android:clickable="false"
+            android:hint="Tanggal"
             android:inputType="text"
             android:textSize="20dp"
             android:textStyle="italic" />
@@ -135,48 +138,48 @@
             android:layout_marginTop="440dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="208dp"
-            android:text="Bahan Bakar"
+            android:text="Jenis Mobil"
             android:textSize="20dp"
             android:textStyle="italic" />
 
         <EditText
-            android:clickable="false"
-            android:id="@+id/txtbensin"
+            android:id="@+id/txtJensiMobil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="470dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="158dp"
-            android:hint="Bensin"
+            android:clickable="false"
+            android:hint="Mobil"
             android:inputType="text"
             android:textSize="20dp"
             android:textStyle="italic" />
 
         <EditText
-            android:clickable="false"
-            android:id="@+id/txttotal"
+            android:id="@+id/txtTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="250dp"
             android:layout_marginTop="530dp"
             android:layout_marginEnd="49dp"
             android:layout_marginBottom="99dp"
+            android:clickable="false"
             android:hint="Total"
             android:inputType="text"
             android:textSize="20dp"
             android:textStyle="italic" />
 
         <Button
-            android:id="@+id/btnbayar"
+            android:id="@+id/btnsimpan"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="100dp"
             android:layout_marginTop="590dp"
             android:layout_marginEnd="100dp"
             android:layout_marginBottom="35dp"
-            android:text="Bayar"
-            android:textSize="20dp"
-            android:backgroundTint="@color/birma" />
+            android:backgroundTint="@color/birma"
+            android:text="Simpan"
+            android:textSize="20dp" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adminmobile.Adapter.adapterRiwayat;
-import com.example.adminmobile.Model.RiwayatModel;
+import com.example.adminmobile.Adapter.AdapterRiwayatBokingAdmin;
+import com.example.adminmobile.Model.RiwayatBokingAdminModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,7 +22,7 @@ import com.google.firebase.firestore.Query;
  * Use the {@link RiwayatFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Riwayat extends Fragment {
+public class RiwayatBokingAdmin extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +34,7 @@ public class Riwayat extends Fragment {
     private String mParam2;
     private RecyclerView recyclerView;
 
-    public Riwayat() {
+    public RiwayatBokingAdmin() {
         // Required empty public constructor
     }
 
@@ -47,8 +47,8 @@ public class Riwayat extends Fragment {
      * @return A new instance of fragment RiwayatFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Riwayat newInstance(String param1, String param2) {
-        Riwayat fragment = new Riwayat();
+    public static RiwayatBokingAdmin newInstance(String param1, String param2) {
+        RiwayatBokingAdmin fragment = new RiwayatBokingAdmin();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,13 +75,13 @@ public class Riwayat extends Fragment {
         recyclerView = view.findViewById(R.id.viewriwayat);
         String firebaseUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        Query query = FirebaseFirestore.getInstance().collection("Booking").whereEqualTo("UID",firebaseUID);
+        Query query = FirebaseFirestore.getInstance().collection("Boking_Admin").whereEqualTo("UID",firebaseUID);
 
-        FirestoreRecyclerOptions<RiwayatModel> option = new FirestoreRecyclerOptions.Builder<RiwayatModel>()
-                .setQuery(query, RiwayatModel.class)
+        FirestoreRecyclerOptions<RiwayatBokingAdminModel> option = new FirestoreRecyclerOptions.Builder<RiwayatBokingAdminModel>()
+                .setQuery(query, RiwayatBokingAdminModel.class)
                 .build();
 
-        adapterRiwayat AdapterRiwayat = new adapterRiwayat(option, getContext());
+        AdapterRiwayatBokingAdmin AdapterRiwayat = new AdapterRiwayatBokingAdmin(option, getContext());
         recyclerView.setAdapter(AdapterRiwayat);
         recyclerView.setLayoutManager(new LinearLayoutManager(container != null ? container.getContext() : null, LinearLayoutManager.VERTICAL, false));;
        AdapterRiwayat.startListening();

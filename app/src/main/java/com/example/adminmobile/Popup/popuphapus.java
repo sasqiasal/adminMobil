@@ -1,20 +1,22 @@
-package com.example.adminmobile;
+package com.example.adminmobile.Popup;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.adminmobile.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link popupedit#newInstance} factory method to
+ * Use the {@link popuphapus#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class popupedit extends DialogFragment {
+public class popuphapus extends DialogFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +27,7 @@ public class popupedit extends DialogFragment {
     private String mParam1;
     private String mParam2;
 
-    public popupedit() {
+    public popuphapus() {
         // Required empty public constructor
     }
 
@@ -35,11 +37,11 @@ public class popupedit extends DialogFragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment popupedit.
+     * @return A new instance of fragment popuphapus.
      */
     // TODO: Rename and change types and number of parameters
-    public static popupedit newInstance(String param1, String param2) {
-        popupedit fragment = new popupedit();
+    public static popuphapus newInstance(String param1, String param2) {
+        popuphapus fragment = new popuphapus();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,8 +62,6 @@ public class popupedit extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_popupedit, container, false);
+        return inflater.inflate(R.layout.fragment_popuphapus, container, false);
     }
-
-
 }

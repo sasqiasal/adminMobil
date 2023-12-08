@@ -7,7 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class syaratketentuanActivity extends AppCompatActivity {
+public class SyaratKetentuanActivity extends AppCompatActivity {
 ImageButton btnback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ ImageButton btnback;
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(syaratketentuanActivity.this, akunProfile.class);
+                Intent intent = new Intent(SyaratKetentuanActivity.this, AkunProfile.class);
                 startActivity(intent);
             }
         });

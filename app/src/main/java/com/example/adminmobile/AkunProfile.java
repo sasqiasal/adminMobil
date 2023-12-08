@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Use the {@link AkunFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class akunProfile extends Fragment {
+public class AkunProfile extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +34,7 @@ public class akunProfile extends Fragment {
     private Button logout;
 
 
-    public akunProfile() {
+    public AkunProfile() {
         // Required empty public constructor
     }
 
@@ -47,8 +47,8 @@ public class akunProfile extends Fragment {
      * @return A new instance of fragment AkunFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static akunProfile newInstance(String param1, String param2) {
-        akunProfile fragment = new akunProfile();
+    public static AkunProfile newInstance(String param1, String param2) {
+        AkunProfile fragment = new AkunProfile();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -91,7 +91,7 @@ public class akunProfile extends Fragment {
         satu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), dataprofileActivity.class);
+                Intent Intent = new Intent(getContext(), DataProfileActivity.class);
                 startActivity(Intent);
 
             }
@@ -108,7 +108,7 @@ public class akunProfile extends Fragment {
         tiga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), pusatbantuanActivity.class);
+                Intent Intent = new Intent(getContext(), PusatBantuanActivity.class);
                 startActivity(Intent);
 
             }
@@ -117,7 +117,7 @@ public class akunProfile extends Fragment {
         empat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), syaratketentuanActivity.class);
+                Intent Intent = new Intent(getContext(), SyaratKetentuanActivity.class);
                 startActivity(Intent);
 
             }
@@ -125,14 +125,14 @@ public class akunProfile extends Fragment {
         lima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), syaratketentuanActivity.class);
+                Intent Intent = new Intent(getContext(), SyaratKetentuanActivity.class);
                 startActivity(Intent);
             }
         });
         enam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), pusatbantuanActivity.class);
+                Intent Intent = new Intent(getContext(), PusatBantuanActivity.class);
                 startActivity(Intent);
             }
         });
@@ -146,14 +146,14 @@ public class akunProfile extends Fragment {
         delap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), dataprofileActivity.class);
+                Intent Intent = new Intent(getContext(), DataProfileActivity.class);
                 startActivity(Intent);
             }
         });
         siji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), dataprofileActivity.class);
+                Intent Intent = new Intent(getContext(), DataProfileActivity.class);
                 startActivity(Intent);
             }
         });
@@ -167,14 +167,14 @@ public class akunProfile extends Fragment {
         telu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), pusatbantuanActivity.class);
+                Intent Intent = new Intent(getContext(), PusatBantuanActivity.class);
                 startActivity(Intent);
             }
         });
         papat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent = new Intent(getContext(), syaratketentuanActivity.class);
+                Intent Intent = new Intent(getContext(), SyaratKetentuanActivity.class);
                 startActivity(Intent);
             }
         });

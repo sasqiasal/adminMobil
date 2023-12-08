@@ -9,21 +9,21 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class daftarPesanan extends AppCompatActivity {
+public class DaftarBokingAdmin extends AppCompatActivity {
 ImageButton back;
 Button tambahjadwal;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daftar_pesanan);
+        setContentView(R.layout.activity_daftarbokingadmin);
         back  = findViewById(R.id.back);
         tambahjadwal = findViewById(R.id.tambahjadwal);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(daftarPesanan.this, home.class);
+                Intent intent = new Intent(DaftarBokingAdmin.this, Home.class);
                 startActivity(intent);
             }
 
@@ -31,7 +31,7 @@ Button tambahjadwal;
         tambahjadwal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(daftarPesanan.this, tambahjadwal.class);
+                Intent intent = new Intent(DaftarBokingAdmin.this, BokingAdmin.class);
                 startActivity(intent);
             }
         });

@@ -1,8 +1,5 @@
 package com.example.adminmobile;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class editDataMobil extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
+import com.example.adminmobile.Popup.popupedit;
+
+public class EditDataMobil extends AppCompatActivity {
     Button btnedit;
     ImageButton back;
     @SuppressLint("MissingInflatedId")
@@ -28,7 +30,7 @@ public class editDataMobil extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(editDataMobil.this, home.class);
+                Intent intent = new Intent(EditDataMobil.this, Home.class);
                 startActivity(intent);
             }
         });

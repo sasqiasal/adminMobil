@@ -1,20 +1,20 @@
 package com.example.adminmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link popuphapus#newInstance} factory method to
+ * Use the {@link Home#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class popuphapus extends DialogFragment {
+public class Home extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,8 +24,8 @@ public class popuphapus extends DialogFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    public popuphapus() {
+    private ImageView gambaratas, gambarbawah;
+    public Home() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class popuphapus extends DialogFragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment popuphapus.
+     * @return A new instance of fragment home.
      */
     // TODO: Rename and change types and number of parameters
-    public static popuphapus newInstance(String param1, String param2) {
-        popuphapus fragment = new popuphapus();
+    public static Home newInstance(String param1, String param2) {
+        Home fragment = new Home();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,7 +59,33 @@ public class popuphapus extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        gambaratas = view.findViewById(R.id.daftarpesanan);
+        gambarbawah = view.findViewById(R.id.datamobil);
+
+
+
+        gambaratas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DaftarBokingAdmin.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+        gambarbawah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DataMobil.class);
+                startActivity(intent);
+
+            }});
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_popuphapus, container, false);
+        return view;
+
+
     }
 }

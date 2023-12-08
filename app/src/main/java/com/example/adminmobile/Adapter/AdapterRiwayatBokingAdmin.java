@@ -12,17 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adminmobile.Model.RiwayatModel;
+import com.example.adminmobile.DetailRiwayatBokingAdmin;
+import com.example.adminmobile.Model.RiwayatBokingAdminModel;
 import com.example.adminmobile.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-public class adapterRiwayat extends FirestoreRecyclerAdapter<RiwayatModel, adapterRiwayat.ViewHolder> {
+public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatBokingAdminModel, AdapterRiwayatBokingAdmin.ViewHolder> {
     Context context;
-    public adapterRiwayat(FirestoreRecyclerOptions<RiwayatModel> options, Context context) {super(options); this.context = context;}
+    public AdapterRiwayatBokingAdmin(FirestoreRecyclerOptions<RiwayatBokingAdminModel> options, Context context) {super(options); this.context = context;}
 
 
 
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RiwayatModel model) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RiwayatBokingAdminModel model) {
         Log.d("Bind", "onBindViewHolder: " + "namamobil" +model.getNamaMobil() + "tujuan" +model.getTujuan() +"pinjam" + model.getTanggalPinjam());
 
 
@@ -33,7 +34,7 @@ public class adapterRiwayat extends FirestoreRecyclerAdapter<RiwayatModel, adapt
         holder.inti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, com.example.adminmobile.detailRiwayat.class);
+                Intent intent = new Intent(context, DetailRiwayatBokingAdmin.class);
 
                 intent.putExtra("tujuan",model.getTujuan());
                 intent.putExtra("tanggalpinjam",model.getTanggalPinjam());
@@ -51,7 +52,7 @@ public class adapterRiwayat extends FirestoreRecyclerAdapter<RiwayatModel, adapt
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View mobilView = inflater.inflate(R.layout.activity_rincian_pesanan,parent,false);
+        View mobilView = inflater.inflate(R.layout.listbokingadmin,parent,false);
         ViewHolder viewHolder = new ViewHolder(mobilView);
         return viewHolder;
 
@@ -68,10 +69,6 @@ public class adapterRiwayat extends FirestoreRecyclerAdapter<RiwayatModel, adapt
 
         public ViewHolder(View itemView) {
             super(itemView);
-            namamobil = itemView.findViewById(R.id.merek);
-            tuju = itemView.findViewById(R.id.tujuan);
-            pinjam = itemView.findViewById(R.id.txtTglPinjam);
-            inti = itemView.findViewById(R.id.inti);
         }
     }
 

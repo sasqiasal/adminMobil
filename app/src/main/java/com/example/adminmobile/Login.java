@@ -1,6 +1,5 @@
 package com.example.adminmobile;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,15 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class masuk extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     private EditText EditEmail, EditPassword;
     private Button btnLogin;
     private TextView btnRegister;
@@ -29,7 +23,7 @@ public class masuk extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_masuk);
+        setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
         EditEmail = findViewById(R.id.editemail);
         EditPassword = findViewById(R.id.editpassword);
@@ -41,7 +35,7 @@ public class masuk extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent=new Intent(masuk.this, daftar.class);
+                Intent Intent=new Intent(Login.this, Register.class);
                 startActivity(Intent);
                 finish();
             }
@@ -65,20 +59,20 @@ public class masuk extends AppCompatActivity {
                                             // Email exists in the "Adminn" collection, proceed with login
                                             mAuth.signInWithEmailAndPassword(email, password)
                                                     .addOnSuccessListener(authResult -> {
-                                                        Toast.makeText(masuk.this, "Login berhasil", Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(masuk.this, MainActivity.class));
+                                                        Toast.makeText(Login.this, "Login berhasil", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(Login.this, MainActivity.class));
                                                         finish();
                                                     })
                                                     .addOnFailureListener(e -> {
-                                                        Toast.makeText(masuk.this, "Password salah", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Login.this, "Password salah", Toast.LENGTH_SHORT).show();
                                                     });
                                         } else {
                                             // Email does not exist in the "Adminn" collection
-                                            Toast.makeText(masuk.this, "Login Dengan Akun Admin", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Login.this, "Login Dengan Akun Admin", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
                                         // Handle the exception if the task is not successful
-                                        Toast.makeText(masuk.this, "Gagal memeriksa email", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this, "Gagal memeriksa email", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     } else {

@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/CVMobil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -45,30 +46,6 @@
                 android:text="lihat detail"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
-
-            <ImageButton
-                android:id="@+id/iconHapus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="32dp"
-                android:background="@null"
-                android:contentDescription="hapus"
-                android:src="@drawable/iconhapus"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <ImageButton
-                android:id="@+id/iconEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="17dp"
-                android:layout_toStartOf="@+id/iconHapus"
-                android:background="@null"
-                android:contentDescription="edit"
-                android:src="@drawable/iconedit"
-                tools:ignore="TouchTargetSizeCheck" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
