@@ -1,11 +1,13 @@
 package com.example.adminmobile;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,12 +36,12 @@ public class RincianBokingAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rincianbokingadmin);
         simpan = findViewById(R.id.btnsimpan);
-        tujuan = findViewById(R.id.txtTujuan);
-        tglpnjm = findViewById(R.id.txtTanggalPinjam);
-        tglkmbli = findViewById(R.id.txtTanggalKembali);
-        mobil = findViewById(R.id.txtJensiMobil);
+        tujuan = findViewById(R.id.rTujuan);
+        tglpnjm = findViewById(R.id.rtglpinjam);
+        tglkmbli = findViewById(R.id.rTglKembali);
+        mobil = findViewById(R.id.rJensiMobil);
         nama = findViewById(R.id.txtNamaPenyewa);
-        total = findViewById(R.id.txtTotal);
+        total = findViewById(R.id.rTotal);
 
 
 
@@ -85,7 +87,24 @@ public class RincianBokingAdmin extends AppCompatActivity {
 
         simpan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                DocumentReference bookingRef = FirebaseFirestore.getInstance().collection("Boking_Admin").document(bookingUid);
                 String jmlh = total.getText().toString().trim();
+
+                bookingRef
+                        .update("Total", jmlh)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Tambahkan tindakan yang ingin Anda lakukan setelah berhasil menyimpan total
+                                // Contoh: Menampilkan pesan sukses atau pindah ke halaman lain
+
+                                Toast.makeText(RincianBokingAdmin.this, "Total berhasil disimpan", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RincianBokingAdmin.this, Home.class);
+                                startActivity(intent);
+                            }
+                        });
+
+//                String jmlh = total.getText().toString().trim();
 
 //                clickPay();
 //                // Membuat referensi ke dokumen "Booking" menggunakan UID
@@ -116,26 +135,26 @@ public class RincianBokingAdmin extends AppCompatActivity {
             }
         });
 
-        DocumentReference dbReff = db.collection("Boking_Admin").document(Auth.getCurrentUser().getUid());
+        DocumentReference dbReff = db.collection("Boking_Admin").document(bookingUid );
         dbReff.get().addOnSuccessListener(documentSnapshot -> {
 
             String Tuju = documentSnapshot.getString("Tujuan");
             String TglP = documentSnapshot.getString("TanggalPinjam");
             String TglK = documentSnapshot.getString("TanggalKembali");
             String Mob = documentSnapshot.getString("NamaMobil");
-            String Nma = documentSnapshot.getString("NamaPenyewa");
+            String Nma = documentSnapshot.getString("Namapemesan");
 
             Log.d("dataprofile", "Tujuan" + Tuju);
             Log.d("dataprofile", "tglpinjam" + TglP);
             Log.d("dataprofile", "tglk" + TglK);
             Log.d("dataprofile", "mobil" + Mob);
-            Log.d("dataprofile", "Namapenyewa" + Nma);
+            Log.d("dataprofile", "Namapemesan" + Nma);
 
 //                Log.d("dataprofile", "total" +ttl);
 
             tujuan.setText(Tuju);
             tglpnjm.setText(TglP);
-            tglkmbli.setText(TglK);
+//            tglkmbli.setText(TglK);
             mobil.setText(Mob);
             nama.setText(Nma);
 //                total.setText(ttl);
@@ -143,7 +162,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
             tglpnjm.setText(getIntent().getStringExtra("TanggalPinjam"));
             tglkmbli.setText(getIntent().getStringExtra("TanggalKembali"));
             mobil.setText(getIntent().getStringExtra("NamaMobil"));
-            nama.setText(getIntent().getStringExtra("NamaPenyewa"));
+            nama.setText(getIntent().getStringExtra("Namapemesan"));
 //                total.setText(getIntent().getStringExtra("JumlahHari"));
 
         }).addOnFailureListener(new OnFailureListener() {
