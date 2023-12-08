@@ -240,7 +240,7 @@ public class BokingAdmin extends AppCompatActivity {
         btnsimpan.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String Namapemesanan= editNama.getText().toString().trim();
+                String NamaBose= editNama.getText().toString().trim();
                 String penjemputan = editPenjemputan.getText().toString().trim();
                 String tujuan = editTujuan.getText().toString().trim();
                 String tglpinjam = editTanggalpinjam.getText().toString().trim();
@@ -253,7 +253,7 @@ public class BokingAdmin extends AppCompatActivity {
                     editPenjemputan.setError("penjemputan tidak boleh kosong");
                 } else if (tujuan.isEmpty()) {
                     editTujuan.setError("tujuan tidak boleh kosong");
-                }else if (Namapemesanan.isEmpty()) {
+                }else if (NamaBose.isEmpty()) {
                     editNama.setError("tujuan tidak boleh kosong");
                 } else if (tglpinjam.isEmpty()) {
                     editTanggalpinjam.setError("pilih tanggal pinjam");
@@ -272,6 +272,7 @@ public class BokingAdmin extends AppCompatActivity {
                     });
                     Map<String, Object> user = new HashMap<>();
                     long hari = calculateTotalDays();
+                    user.put("Namapemesan", NamaBose);
                     user.put("Penjemputan", penjemputan);
                     user.put("Tujuan", tujuan);
                     user.put("TanggalPinjam", tglpinjam);
@@ -287,7 +288,7 @@ public class BokingAdmin extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Intent intent = new Intent(BokingAdmin.this, RincianBokingAdmin.class);
-                            intent.putExtra("Namapemesanan", Namapemesanan);
+                            intent.putExtra("Namapemesan", NamaBose);
                             intent.putExtra("Tujuan",tujuan);
                             intent.putExtra("TanggalPinjam", tglpinjam);
                             intent.putExtra("TanggalKembali", tglkembali);

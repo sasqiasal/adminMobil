@@ -68,7 +68,7 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/txtTujuan"
+            android:id="@+id/rTujuan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -93,7 +93,7 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/txttglpinjam"
+            android:id="@+id/rtglpinjam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -118,7 +118,7 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/txtTglKembali"
+            android:id="@+id/rTglKembali"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -143,7 +143,7 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/txtJensiMobil"
+            android:id="@+id/rJensiMobil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -157,7 +157,7 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/txtTotal"
+            android:id="@+id/rTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="250dp"
