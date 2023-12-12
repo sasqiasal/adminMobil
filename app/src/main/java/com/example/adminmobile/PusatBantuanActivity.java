@@ -25,7 +25,7 @@ public class PusatBantuanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent watsap = new Intent(Intent.ACTION_VIEW);
-                watsap.setData(Uri.parse("https://wa.me/6281230072149?qr=1"));
+                watsap.setData(Uri.parse("https://wa.link/dpfl2r"));
                 startActivity(watsap);
             }
         });

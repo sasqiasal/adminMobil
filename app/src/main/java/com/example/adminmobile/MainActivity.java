@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity mainActivity1 = new MainActivity();
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction transaction1 = fragmentManager1.beginTransaction();
-                transaction1.replace(R.id.konten, new RiwayatBokingAdmin());
+                transaction1.replace(R.id.konten, new RiwayatFragment());
                 transaction1.commit();
             } else if (item.getItemId() == R.id.menu3) {
                 FragmentManager fragmentManager1 = getSupportFragmentManager();

@@ -9,13 +9,14 @@
 
     <ImageButton
         android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="81dp"
+        android:layout_height="53dp"
         android:layout_marginEnd="361dp"
         android:background="@null"
         android:contentDescription="back"
         android:src="@drawable/iconback"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,84 +29,107 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="90dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="50dp"
             android:src="@drawable/icon_account" />
 
         <TextView
+            android:id="@+id/labelnama"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginLeft="200dp"
+            android:layout_marginLeft="123dp"
             android:layout_marginTop="80dp"
             android:text="Your Name"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:clickable="false"
+            android:enabled="false"
             android:textSize="20dp" />
 
 
-        <EditText
-            android:id="@+id/editNama"
+        <TextView
+            android:id="@+id/editEmail"
             android:layout_width="wrap_content"
-            android:layout_height="53dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="256dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="20dp"
             android:ems="10"
-            android:gravity="center"
-            android:hint="Name"
             android:inputType="text"
             android:minHeight="48dp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="Email"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/edittAlamat"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView7"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="325dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="70dp"
             android:ems="10"
+            android:focusable="false"
             android:gravity="center"
-            android:hint="Alamat"
             android:inputType="text"
             android:minHeight="48dp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="Alamat" />
 
         <EditText
             android:id="@+id/editNoHp"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView8"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="398dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="70dp"
             android:ems="10"
+            android:focusable="false"
             android:gravity="center"
-            android:hint="Nomor Hp"
             android:inputType="phone"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:text="hape" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="191dp"
-            android:layout_height="46dp"
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="484dp"
-            android:layout_marginEnd="110dp"
-            android:backgroundTint="@color/birmu"
-            android:text="Save"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="67dp"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:layout_marginEnd="70dp"
+            android:text="Alamat" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edittAlamat"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="70dp"
+            android:text="Nomor Hp"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

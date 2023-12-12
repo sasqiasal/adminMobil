@@ -2,27 +2,30 @@ package com.example.adminmobile;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adminmobile.Adapter.AdapterRiwayatBokingAdmin;
-import com.example.adminmobile.Model.RiwayatBokingAdminModel;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.adminmobile.Adapter.AdapterRiwayat;
+import com.example.adminmobile.Model.riwayatmodel;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link RiwayatFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RiwayatBokingAdmin extends Fragment {
+public class RiwayatFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +37,7 @@ public class RiwayatBokingAdmin extends Fragment {
     private String mParam2;
     private RecyclerView recyclerView;
 
-    public RiwayatBokingAdmin() {
+    public RiwayatFragment() {
         // Required empty public constructor
     }
 
@@ -47,8 +50,8 @@ public class RiwayatBokingAdmin extends Fragment {
      * @return A new instance of fragment RiwayatFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RiwayatBokingAdmin newInstance(String param1, String param2) {
-        RiwayatBokingAdmin fragment = new RiwayatBokingAdmin();
+    public static RiwayatFragment newInstance(String param1, String param2) {
+        RiwayatFragment fragment = new RiwayatFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,25 +72,29 @@ public class RiwayatBokingAdmin extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_notifikasi, container, false);
+        View view = inflater.inflate(R.layout.riwayat, container, false);
 
         recyclerView = view.findViewById(R.id.viewriwayat);
-        String firebaseUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        Query query = FirebaseFirestore.getInstance().collection("Boking_Admin").whereEqualTo("UID",firebaseUID);
-
-        FirestoreRecyclerOptions<RiwayatBokingAdminModel> option = new FirestoreRecyclerOptions.Builder<RiwayatBokingAdminModel>()
-                .setQuery(query, RiwayatBokingAdminModel.class)
-                .build();
-
-        AdapterRiwayatBokingAdmin AdapterRiwayat = new AdapterRiwayatBokingAdmin(option, getContext());
-        recyclerView.setAdapter(AdapterRiwayat);
-        recyclerView.setLayoutManager(new LinearLayoutManager(container != null ? container.getContext() : null, LinearLayoutManager.VERTICAL, false));;
-       AdapterRiwayat.startListening();
-
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Booking")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<riwayatmodel> dataList = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        // Convert each document snapshot to your model class
+                        riwayatmodel data = document.toObject(riwayatmodel.class);
+                        // Add the converted data to your list
+                        dataList.add(data);
+                    }
+                    // Set up RecyclerView after populating the dataList
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    AdapterRiwayat adapter = new AdapterRiwayat(dataList, getContext());
+                    recyclerView.setAdapter(adapter);
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("getResdata", "error Fetching data " + e);
+                    Toast.makeText(getContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
+                });
         return view;
-
-
     }
 }

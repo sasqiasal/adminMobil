@@ -38,7 +38,6 @@ public class AdapterMobil extends FirestoreRecyclerAdapter<Mobil, AdapterMobil.V
                 Log.d("Bind", "onBindViewHolder: " +model.getKursi() + model.getNama() +model.getGambar());
 
                 holder.namaMobil.setText(model.getNama());
-//                holder.jmlhkrsi.setText(model.getKursi());
                 holder.harga.setText(model.getHarga());
                 Glide.with(context)
                         .load(model.getGambar())
@@ -97,7 +96,6 @@ public class AdapterMobil extends FirestoreRecyclerAdapter<Mobil, AdapterMobil.V
                         super(itemView);
                         namaMobil = itemView.findViewById(R.id.merek);
                         harga = itemView.findViewById(R.id.detail);
-//                        kursi = itemView.findViewById(R.id.kursi);
                         gambar = itemView.findViewById(R.id.gmobil);
                         cvMobil = itemView.findViewById(R.id.CVMobil);
                         db = FirebaseFirestore.getInstance();

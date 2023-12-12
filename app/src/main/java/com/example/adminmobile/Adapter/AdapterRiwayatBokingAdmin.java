@@ -24,10 +24,9 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
 
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RiwayatBokingAdminModel model) {
-        Log.d("Bind", "onBindViewHolder: " + "namamobil" +model.getNamaMobil() + "tujuan" +model.getTujuan() +"pinjam" + model.getTanggalPinjam());
+        Log.d("Bind", "onBindViewHolder: " + "namamobil" +model.getIDMobil() + "tujuan" +model.getTujuan() +"pinjam" + model.getTanggalPinjam());
 
-
-        holder.namamobil.setText(model.getNamaMobil());
+        holder.namamobil.setText(model.getIDMobil());
         holder.tuju.setText(model.getTujuan());
         holder.pinjam.setText(model.getTanggalPinjam());
 
@@ -38,7 +37,7 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
                 intent.putExtra("tujuan",model.getTujuan());
                 intent.putExtra("tanggalpinjam",model.getTanggalPinjam());
-                intent.putExtra("hari",model.getHari());
+                intent.putExtra("hari",model.getJumlahHari());
                 intent.putExtra("total",model.getTotal());
                 intent.putExtra("uid", model.getDocumentId().toString());
 
@@ -69,6 +68,9 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            namamobil = itemView.findViewById(R.id.namamobil);
+
         }
     }
 
