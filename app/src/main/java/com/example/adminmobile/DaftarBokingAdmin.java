@@ -20,13 +20,13 @@ import com.google.firebase.firestore.Query;
 public class DaftarBokingAdmin extends AppCompatActivity {
 ImageButton back;
 Button tambahjadwal;
-    private RecyclerView recyclerView;
+     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftarbokingadmin);
 
-        recyclerView = findViewById(R.id.viewdaftarpesanan);
+        recyclerView = findViewById(R.id.rvRiwayat);
         String firebaseUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         Query query = FirebaseFirestore.getInstance().collection("Boking_Admin");
@@ -35,10 +35,10 @@ Button tambahjadwal;
                 .setQuery(query, RiwayatBokingAdminModel.class)
                 .build();
 
-        AdapterRiwayatBokingAdmin adapterRiwayat = new AdapterRiwayatBokingAdmin(option, this);
+        AdapterRiwayatBokingAdmin adapterRiwayat = new AdapterRiwayatBokingAdmin(option);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapterRiwayat);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));;
-        adapterRiwayat.startListening();
+                adapterRiwayat.startListening();
 
         back  = findViewById(R.id.back);
         tambahjadwal = findViewById(R.id.tambahjadwal);
@@ -46,7 +46,7 @@ Button tambahjadwal;
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DaftarBokingAdmin.this, Home.class);
+                Intent intent = new Intent(DaftarBokingAdmin.this,MainActivity.class);
                 startActivity(intent);
             }
 

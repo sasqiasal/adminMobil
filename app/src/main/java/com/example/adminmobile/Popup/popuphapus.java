@@ -1,15 +1,20 @@
 package com.example.adminmobile.Popup;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import com.example.adminmobile.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,11 +62,31 @@ public class popuphapus extends DialogFragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+Button btnHapus,btnBatal;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_popuphapus, container, false);
+        View view = inflater.inflate(R.layout.fragment_popuphapus, container, false);
+        btnHapus = view.findViewById(R.id.button);
+        btnBatal = view.findViewById(R.id.button2);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        btnHapus.setOnClickListener(v -> {
+            db.collection("Data_Mobil").document(mParam1).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(getActivity(), "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }
+            });
+        });
+
+        btnBatal.setOnClickListener(v -> {
+            dismiss();
+        });
+
+        return view;
     }
 }

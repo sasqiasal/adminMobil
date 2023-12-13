@@ -38,7 +38,7 @@ public class DetailRiwayat extends AppCompatActivity {
 //        Toast.makeText(this, bundle.getString("uid"), Toast.LENGTH_SHORT).show();
         if (bundle != null){
 
-            tvNama.setText(bundle.getString("namamobil"));
+            tvNama.setText(bundle.getString("mobil"));
             tvhp.setText(bundle.getString("NoHp"));
             tvTujuan.setText(bundle.getString("tujuan"));
             tvTotal.setText(bundle.getString("total"));

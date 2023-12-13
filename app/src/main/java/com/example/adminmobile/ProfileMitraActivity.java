@@ -8,18 +8,18 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileMitraActivity extends AppCompatActivity {
-ImageButton btnback;
+ImageButton balek;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_mitra);
-        btnback = findViewById(R.id.back);
+        balek = findViewById(R.id.back);
 
-        btnback.setOnClickListener(new View.OnClickListener() {
+        balek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileMitraActivity.this, AkunProfile.class);
-                startActivity(intent);
+                Intent inten = new Intent(ProfileMitraActivity.this, AkunProfile.class);
+                finish();
             }
         });
     }

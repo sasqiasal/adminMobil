@@ -286,7 +286,7 @@
                     android:layout_below="@id/mobil"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="-12dp"
                     android:layout_marginEnd="50dp"
                     android:layout_marginBottom="30dp"
                     android:background="@drawable/rounded_button"

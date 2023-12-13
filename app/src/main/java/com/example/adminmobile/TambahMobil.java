@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class TambahMobil extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private EditText merkmbl, hrgsewa, jmlhkrsi;
+    private ImageButton balek;
     private ProgressDialog progressDialog;
     private ImageView imageView;
     private ActivityTambahDataMobilBinding binding;
@@ -62,6 +64,7 @@ public class TambahMobil extends AppCompatActivity {
         jmlhkrsi = findViewById(R.id.tJumlahKursi);
         imageView = findViewById(R.id.addimage);
         Button btn = findViewById(R.id.button);
+        balek = findViewById(R.id.back);
         FirebaseApp.getInstance();
         auth = FirebaseAuth.getInstance();
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +76,14 @@ public class TambahMobil extends AppCompatActivity {
         progressDialog = new ProgressDialog(TambahMobil.this);
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Menyimpan...");
+
+        balek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inten = new Intent(TambahMobil.this, DataMobil.class);
+                startActivity(inten);
+            }
+        });
 
 
         binding.simpan.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +99,7 @@ public class TambahMobil extends AppCompatActivity {
                 }
             }
         });
+
         Intent intent = getIntent();
         if (intent!=null){
             id = intent.getStringExtra("id");

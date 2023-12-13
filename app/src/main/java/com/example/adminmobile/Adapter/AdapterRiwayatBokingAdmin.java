@@ -17,9 +17,14 @@ import com.example.adminmobile.Model.RiwayatBokingAdminModel;
 import com.example.adminmobile.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatBokingAdminModel, AdapterRiwayatBokingAdmin.ViewHolder> {
-    Context context;
-    public AdapterRiwayatBokingAdmin(FirestoreRecyclerOptions<RiwayatBokingAdminModel> options, Context context) {super(options); this.context = context;}
+    public AdapterRiwayatBokingAdmin(FirestoreRecyclerOptions<RiwayatBokingAdminModel> options) {
+        super(options);
+    }
 
 
 
@@ -30,50 +35,46 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
         holder.tuju.setText(model.getTujuan());
         holder.pinjam.setText(model.getTanggalPinjam());
 
-        holder.inti.setOnClickListener(new View.OnClickListener() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Data_Mobil").document(model.getIDMobil()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, DetailRiwayatBokingAdmin.class);
-
-                intent.putExtra("tujuan",model.getTujuan());
-                intent.putExtra("tanggalpinjam",model.getTanggalPinjam());
-                intent.putExtra("hari",model.getJumlahHari());
-                intent.putExtra("total",model.getTotal());
-                intent.putExtra("uid", model.getDocumentId().toString());
-
-
-
-                context.startActivity(intent);
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                holder.namamobil.setText(documentSnapshot.get("Nama").toString());
             }
+        });
+
+        holder.inti.setOnClickListener(view -> {
+            Intent intent = new Intent(holder.context, DetailRiwayatBokingAdmin.class);
+
+            intent.putExtra("tujuan",model.getTujuan());
+            intent.putExtra("tanggalpinjam",model.getTanggalPinjam());
+            intent.putExtra("hari",model.getJumlahHari());
+            intent.putExtra("total",model.getTotal());
+            intent.putExtra("uid", model.getDocumentID());
+
+
+
+            holder.context.startActivity(intent);
         });
     }
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View mobilView = inflater.inflate(R.layout.listbokingadmin,parent,false);
-        ViewHolder viewHolder = new ViewHolder(mobilView);
-        return viewHolder;
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listbokingadmin,parent,false));
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView namamobil, tuju, pinjam;
         RelativeLayout inti;
+        Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            namamobil = itemView.findViewById(R.id.namamobil);
-
+            namamobil = itemView.findViewById(R.id.namamobilbooking);
+            context = itemView.getContext();
+            inti = itemView.findViewById(R.id.container);
+            tuju = itemView.findViewById(R.id.tuju);
+            pinjam = itemView.findViewById(R.id.pinjam);
         }
-    }
-
-    private class detailRiwayat {
     }
 }

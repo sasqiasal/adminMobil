@@ -97,7 +97,7 @@ public class BokingAdmin extends AppCompatActivity {
         balek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inten = new Intent(BokingAdmin.this, MainActivity.class);
+                Intent inten = new Intent(BokingAdmin.this, DaftarBokingAdmin.class);
                 startActivity(inten);
             }
         });
@@ -124,7 +124,6 @@ public class BokingAdmin extends AppCompatActivity {
         spinerr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "" +adapter.getItem(i), Toast.LENGTH_SHORT).show();
                 IDMobil = mobiles.getDocuments().get(i).getId();
                 Log.e("ID Nama_Mobil", mobiles.getDocuments().get(i).getId());
             }
@@ -282,8 +281,6 @@ public class BokingAdmin extends AppCompatActivity {
 
                     CollectionReference dbReff = db.collection("Boking_Admin");
 
-
-
                     dbReff.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -295,9 +292,6 @@ public class BokingAdmin extends AppCompatActivity {
                             intent.putExtra("IDMobil", IDMobil);
                             intent.putExtra("JumlahHari", hari);
                             intent.putExtra("DocumentID",documentReference.getId());
-
-
-
                             startActivity(intent);
                         }
                     });

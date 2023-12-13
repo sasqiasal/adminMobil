@@ -10,27 +10,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.adminmobile.Model.Mobil;
+import com.example.adminmobile.Popup.popuphapus;
 import com.example.adminmobile.R;
 import com.example.adminmobile.TambahMobil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AdapterMobil extends FirestoreRecyclerAdapter<Mobil, AdapterMobil.ViewHolder> {
         Context context;
-        public AdapterMobil(FirestoreRecyclerOptions<Mobil> options, Context context) {
+        FragmentManager fragmentManager;
+        public AdapterMobil(FirestoreRecyclerOptions<Mobil> options, Context context,FragmentManager fM) {
                 super(options);
                 this.context = context;
+                this.fragmentManager = fM;
         }
 
         @Override
@@ -59,13 +60,8 @@ public class AdapterMobil extends FirestoreRecyclerAdapter<Mobil, AdapterMobil.V
           intent.putExtra("id", model.getDocumentId().toString());
           context.startActivity(intent);
           break;
-            case 1:
-                holder.db.collection("Data_Mobil").document(model.getDocumentId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(context, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show();
-                    }
-                });
+           case 1:
+               popuphapus.newInstance(model.getDocumentId(),"").show(fragmentManager,"Hapus");
             break;
           }
           }

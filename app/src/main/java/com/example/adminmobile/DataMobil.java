@@ -57,7 +57,7 @@ public class DataMobil extends AppCompatActivity {
                 .build();
 
 
-        AdapterMobil recyclerAdapter = new AdapterMobil(option, this);
+        AdapterMobil recyclerAdapter = new AdapterMobil(option, this,getSupportFragmentManager());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
@@ -84,7 +84,7 @@ public class DataMobil extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DataMobil.this, Home.class);
+                Intent intent = new Intent(DataMobil.this, MainActivity.class);
                 startActivity(intent);
             }
         });

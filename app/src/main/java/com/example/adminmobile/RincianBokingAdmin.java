@@ -97,9 +97,8 @@ public class RincianBokingAdmin extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
                                 // Tambahkan tindakan yang ingin Anda lakukan setelah berhasil menyimpan total
                                 // Contoh: Menampilkan pesan sukses atau pindah ke halaman lain
-
                                 Toast.makeText(RincianBokingAdmin.this, "Total berhasil disimpan", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RincianBokingAdmin.this, Home.class);
+                                Intent intent = new Intent(RincianBokingAdmin.this, MainActivity.class);
                                 startActivity(intent);
                             }
                         });
