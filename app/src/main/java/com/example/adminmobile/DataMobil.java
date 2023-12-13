@@ -86,6 +86,7 @@ public class DataMobil extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DataMobil.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

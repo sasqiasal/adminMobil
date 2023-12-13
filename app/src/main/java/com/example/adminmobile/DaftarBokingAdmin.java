@@ -48,6 +48,7 @@ Button tambahjadwal;
             public void onClick(View view) {
                 Intent intent = new Intent(DaftarBokingAdmin.this,MainActivity.class);
                 startActivity(intent);
+                finish();
             }
 
         });

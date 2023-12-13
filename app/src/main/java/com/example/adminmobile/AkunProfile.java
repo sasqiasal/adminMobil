@@ -85,6 +85,7 @@ public class AkunProfile extends Fragment {
         loro = view.findViewById(R.id.about);
         telu = view.findViewById(R.id.bantuan);
         papat = view.findViewById(R.id.ketentuan);
+        logout = view.findViewById(R.id.logout);
 
 
 
@@ -178,6 +179,24 @@ public class AkunProfile extends Fragment {
                 startActivity(Intent);
             }
         });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+
+                // Navigate to login screen
+                Intent intent = new Intent(view.getContext(), Login.class);
+
+                startActivity(intent);
+
+                // Close current activity
+                getActivity().finish();
+
+            }
+
+        });
         return view;
+
+
     }
 }

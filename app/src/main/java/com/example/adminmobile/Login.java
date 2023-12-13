@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class Login extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Intent=new Intent(Login.this, Register.class);
+                Intent Intent = new Intent(Login.this, Register.class);
                 startActivity(Intent);
                 finish();
             }
@@ -85,46 +86,16 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String email = EditEmail.getText().toString().trim();
-//                String password = EditPassword.getText().toString().trim();
-//
-//
-//
-//
-//                if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email) .matches()) {
-//                    if(!password.isEmpty()){
-//                        mAuth.signInWithEmailAndPassword(email, password)
-//                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-//                                    @Override
-//                                    public void onSuccess(AuthResult authResult) {
-//                                        Toast.makeText(masuk.this, "login berhasil", Toast.LENGTH_SHORT).show();
-//                                        startActivity(new Intent(masuk.this, MainActivity.class));
-//                                        finish();
-//                                    }
-//                                }).addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Toast.makeText(masuk.this, "pasword salah", Toast.LENGTH_SHORT).show();
-//
-//                                    }
-//                                });
-//                    }else{
-//                        EditPassword.setError("pasword tidak tersedia");
-//                    }
-//                } else if (email.isEmpty()) {
-//                    EditEmail.setError("email tidak tersedia");
-//                }else{
-//                    EditEmail.setError("isi email dengan benar");
-//                }
-//
-//            }
-//        });
     }
-}
+        protected void onStart () {
+            super.onStart();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if (currentUser != null) {
+                startActivity(new Intent(Login.this, MainActivity.class));
+                finish();
+            }
+
+
+        }
+    }
+
