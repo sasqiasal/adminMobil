@@ -3,12 +3,20 @@ package com.example.adminmobile.Model;
 import com.google.firebase.Timestamp;
 
 public class riwayatmodel {
-    String IDMobil, NamaPenyewa, NoHp, Penjemputan, Total, Tujuan, UID;
+    String IDMobil;
+    String NamaPenyewa;
+    String NoHp;
+    String Penjemputan;
+    String Total;
+    String Tujuan;
+    String UID;
+    String JamBerangkat;
     int JumlahHari;
     Timestamp TanggalKembali, TanggalPinjam;
 //    Date TanggalKembali, TanggalPinjam;
 
     public riwayatmodel() {
+        this.JamBerangkat = null;
         this.IDMobil = null;
         this.JumlahHari = 0;
         this.NamaPenyewa = null;
@@ -19,6 +27,11 @@ public class riwayatmodel {
         this.UID = null;
         this.TanggalKembali = null;
         this.TanggalPinjam = null;
+    }
+    public String getJam() {return JamBerangkat;
+    }
+
+    public void setJam(String jam) {this.JamBerangkat = jam;
     }
 
     public String getIDMobil() {

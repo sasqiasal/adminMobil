@@ -1,5 +1,7 @@
 package com.example.adminmobile.Adapter;
 
+import static com.example.adminmobile.DetailRiwayatBokingAdmin.formatFirestoreTimestamp;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -33,13 +35,12 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
         holder.namamobil.setText(model.getIDMobil());
         holder.tuju.setText(model.getTujuan());
-        holder.pinjam.setText(model.getTanggalPinjam());
-
+        holder.pinjam.setText(formatFirestoreTimestamp(model.getTanggalPinjam()));
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Data_Mobil").document(model.getIDMobil()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                holder.namamobil.setText(documentSnapshot.get("Nama").toString());
+                holder.namamobil.setText(documentSnapshot.getString("Nama"));
             }
         });
 

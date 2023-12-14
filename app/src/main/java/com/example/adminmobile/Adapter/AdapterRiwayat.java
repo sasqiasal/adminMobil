@@ -40,9 +40,10 @@ public class AdapterRiwayat extends RecyclerView.Adapter<riwayatviewholder>{
     public void onBindViewHolder(@NonNull riwayatviewholder holder, int position) {
         holder.tuju.setText(dataRes.get(position).getTujuan());
         holder.pinjam.setText(formatFirestoreTimestamp(dataRes.get(position).getTanggalPinjam()));
-        String hp, tujuan, total, namapenyewa, penjemputan, namamobil;
+        String jam, hp, tujuan, total, namapenyewa, penjemputan, namamobil;
         String pinjam, kembali;
         int hari;
+        jam = dataRes.get(position).getJam();
         hp = dataRes.get(position).getNoHp();
         tujuan = dataRes.get(position).getTujuan();
         namamobil = dataRes.get(position).getIDMobil();
@@ -65,6 +66,7 @@ public class AdapterRiwayat extends RecyclerView.Adapter<riwayatviewholder>{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailRiwayat.class);
+                intent.putExtra("JamBerangkat",jam);
                 intent.putExtra("NoHp", hp);
                 intent.putExtra("tujuan", tujuan);
                 intent.putExtra("total", total);

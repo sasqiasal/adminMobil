@@ -7,11 +7,15 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DetailRiwayatBokingAdmin extends AppCompatActivity {
-    EditText  tvhp,tvpenjemputan, tvTujuan, tvNama, tvmobil, tvTanggalpinjam,tvTanggalkembali, tvHari, tvTotal;
+    EditText  tvjam, tvhp,tvpenjemputan, tvTujuan, tvNama, tvmobil, tvTanggalpinjam,tvTanggalkembali, tvHari, tvTotal;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -19,6 +23,7 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         setContentView(R.layout.deatil_riwayatbokingadmin);
+        tvjam = findViewById(R.id.jamBerangkat);
         tvmobil = findViewById(R.id.mobil);
         tvNama = findViewById(R.id.Namabose);
         tvhp = findViewById(R.id.hape);
@@ -31,8 +36,9 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 //        Toast.makeText(this, bundle.getString("uid"), Toast.LENGTH_SHORT).show();
         if (bundle != null){
-            
-            tvhp.setText(bundle.getString("NoHp"));
+            tvjam.setText(bundle.getString("jam"));
+
+            tvhp.setText(Integer.toString(bundle.getInt("No")));
             tvTujuan.setText(bundle.getString("tujuan"));
             tvTotal.setText(bundle.getString("total"));
             tvTanggalpinjam.setText(bundle.getString("tanggalpinjam"));
@@ -46,11 +52,14 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
             db.collection("Boking_Admin").document(bundle.getString("uid")).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    tvjam.setText(documentSnapshot.get("JamBerangkat").toString());
+
                     tvNama.setText(documentSnapshot.get("Namapemesan").toString());
                     tvpenjemputan.setText(documentSnapshot.get("Penjemputan").toString());
                     tvHari.setText(documentSnapshot.get("JumlahHari").toString());
-                    tvTanggalpinjam.setText(documentSnapshot.get("TanggalPinjam").toString());
-                    tvTanggalkembali.setText(documentSnapshot.get("TanggalKembali").toString());
+                    tvTanggalpinjam.setText(formatFirestoreTimestamp(documentSnapshot.getTimestamp("TanggalPinjam")));
+                    tvTanggalkembali.setText(formatFirestoreTimestamp(documentSnapshot.getTimestamp("TanggalKembali")));
+                    tvhp.setText(documentSnapshot.get("NoHp").toString());
                     tvTujuan.setText(documentSnapshot.get("Tujuan").toString());
                     tvTotal.setText(documentSnapshot.get("Total").toString());
 
@@ -66,5 +75,13 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
 
 
         }
+    }
+    public static String formatFirestoreTimestamp(Timestamp firestoreTimestamp) {
+        // Convert Firestore timestamp to Java Date object
+        Date dateObject = firestoreTimestamp.toDate();
+
+        // Format the date to "dd-MMMM-yyyy"
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+        return dateFormat.format(dateObject);
     }
 }

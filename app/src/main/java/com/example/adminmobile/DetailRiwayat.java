@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DetailRiwayat extends AppCompatActivity {
-    EditText tvTujuan, tvNama, tvTanggal, tvHari, tvTotal, tvPenyewa, tvTKembali, tvPenjemputan, tvhp;
+    EditText tvjam, tvTujuan, tvNama, tvTanggal, tvHari, tvTotal, tvPenyewa, tvTKembali, tvPenjemputan, tvhp;
 
 
     @SuppressLint("MissingInflatedId")
@@ -25,6 +25,7 @@ public class DetailRiwayat extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_detail_riwayat);
+        tvjam = findViewById(R.id.jamBudal);
         tvhp = findViewById(R.id.hape);
         tvNama = findViewById(R.id.mobil);
         tvTujuan = findViewById(R.id.tujuan);
@@ -37,7 +38,7 @@ public class DetailRiwayat extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 //        Toast.makeText(this, bundle.getString("uid"), Toast.LENGTH_SHORT).show();
         if (bundle != null){
-
+            tvjam.setText(bundle.getString("JamBerangkat"));
             tvNama.setText(bundle.getString("mobil"));
             tvhp.setText(bundle.getString("NoHp"));
             tvTujuan.setText(bundle.getString("tujuan"));

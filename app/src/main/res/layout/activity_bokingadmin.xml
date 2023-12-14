@@ -136,8 +136,8 @@
                             android:layout_marginTop="20dp"
                             android:background="@android:color/transparent"
                             android:ems="10"
-                            android:hint="Isi nomer telepon pemesan"
-                            android:inputType="text"
+                            android:hint="No telepon pemesan"
+                            android:inputType="number"
                             android:minHeight="48dp"
                             android:padding="1dp"
                             tools:ignore="TouchTargetSizeCheck" />
@@ -341,34 +341,98 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/mobil"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/card4"
-                    android:layout_marginStart="0dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="5dp"
+                    app:cardElevation="4dp"
+                    android:layout_below="@id/card4"
                     app:cardUseCompatPadding="true"
-                    app:contentPadding="15dp">
+                    app:contentPadding="10dp">
 
 
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
-                        android:drawableLeft="@drawable/icon_directions"
-                        android:textColor="#000000" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <Spinner
-                        android:id="@+id/spinnerlist"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="40dp"
-                        android:hint="Pilih mobil" />
+
+                        <TextView
+                            android:id="@+id/pilihjam"
+                            android:layout_width="179dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textView2"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="149dp"
+                            android:layout_marginTop="4dp"
+                            android:hint="Jam"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textColorHint="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="179dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="150dp"
+                            android:hint="Jam Keberangkatan"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textColorHint="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="118dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:drawableLeft="@drawable/icon_directions"
+                            android:textColor="#000000" />
+
+                        <Spinner
+                            android:id="@+id/spinnerlist"
+                            android:layout_width="110dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="40dp"
+                            android:hint="Pilih mobil" />
+
+
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/mobil"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/card4"-->
+<!--                    android:layout_marginStart="0dp"-->
+<!--                    app:cardBackgroundColor="#FFFFFF"-->
+<!--                    app:cardCornerRadius="16dp"-->
+<!--                    app:cardElevation="5dp"-->
+<!--                    app:cardUseCompatPadding="true"-->
+<!--                    app:contentPadding="15dp">-->
+
+
+<!--                    <TextView-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentStart="true"-->
+<!--                        android:layout_alignParentTop="true"-->
+<!--                        android:layout_marginStart="0dp"-->
+<!--                        android:layout_marginTop="0dp"-->
+<!--                        android:drawableLeft="@drawable/icon_directions"-->
+<!--                        android:textColor="#000000" />-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/spinnerlist"-->
+<!--                        android:layout_width="48dp"-->
+<!--                        android:layout_height="48dp"-->
+<!--                        android:layout_marginStart="40dp"-->
+<!--                        android:hint="Pilih mobil" />-->
+<!--                </androidx.cardview.widget.CardView>-->
 
                 <Button
                     android:id="@+id/buttontambahjadwal"
@@ -377,7 +441,7 @@
                     android:layout_below="@id/mobil"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="-12dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="50dp"
                     android:layout_marginBottom="30dp"
                     android:background="@drawable/rounded_button"
@@ -385,18 +449,18 @@
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/total_days"
-                    android:layout_width="103dp"
-                    android:layout_height="49dp"
-                    android:layout_below="@+id/card4"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="37dp"
-                    android:layout_marginEnd="90dp"
-                    android:gravity="center"
-                    android:hint="Hari "
-                    android:textSize="17dp" />
+                <!--                <TextView-->
+<!--                    android:id="@+id/total_days"-->
+<!--                    android:layout_width="103dp"-->
+<!--                    android:layout_height="49dp"-->
+<!--                    android:layout_below="@+id/card4"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_marginTop="37dp"-->
+<!--                    android:layout_marginEnd="90dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:hint="Hari "-->
+<!--                    android:textSize="17dp" />-->
 
             </RelativeLayout>
         </ScrollView>

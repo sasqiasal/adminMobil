@@ -1,12 +1,14 @@
 package com.example.adminmobile.Model;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentId;
 
 public class RiwayatBokingAdminModel {
 
     public RiwayatBokingAdminModel(){
-        this.documentID = null;
-        this.IDMobil ="";
+    this.documentID = null;
+    this.NoHp =null;
+    this.IDMobil ="";
     this.Namapemesan ="";
     this.Penjemputan = "";
     this.TanggalKembali="";
@@ -23,7 +25,8 @@ public class RiwayatBokingAdminModel {
     public void setIDMobil(String IDMobil) {
         this.IDMobil = IDMobil;
     }
-
+    public Object getNoHp() { return NoHp;}
+    public void setNoHp(String NoHp) { NoHp = NoHp;}
     public String getNamapemesan() {
         return Namapemesan;
     }
@@ -40,21 +43,19 @@ public class RiwayatBokingAdminModel {
         Penjemputan = penjemputan;
     }
 
-    public String getTanggalKembali() {
-        return TanggalKembali;
-    }
-
-    public void setTanggalKembali(String tanggalKembali) {
-        TanggalKembali = tanggalKembali;
-    }
-
-    public String getTanggalPinjam() {
-        return TanggalPinjam;
-    }
-
-    public void setTanggalPinjam(String tanggalPinjam) {
-        TanggalPinjam = tanggalPinjam;
-    }
+//    public Timestamp getTanggalKembali() { return TanggalKembali; }
+//
+//    public Void setTanggalKembali(Timestamp tanggalKembali) {
+//        TanggalKembali = tanggalKembali;
+//    }
+//
+//    public Timestamp getTanggalPinjam() {
+//        return TanggalPinjam;
+//    }
+//
+//    public void setTanggalPinjam(Timestamp tanggalPinjam) {
+//        TanggalPinjam = tanggalPinjam;
+//    }
 
     public String getTotal() {
         return Total;
@@ -80,7 +81,14 @@ public class RiwayatBokingAdminModel {
         JumlahHari = jumlahHari;
     }
 
-    String IDMobil,Namapemesan,Penjemputan,TanggalKembali,TanggalPinjam,Total,Tujuan;
+    String IDMobil;
+    String Namapemesan;
+    String Penjemputan;
+    String TanggalKembali;
+    String TanggalPinjam;
+    String Total;
+    String Tujuan;
+    Object NoHp;
     int JumlahHari;
 
     public String getDocumentID() {
