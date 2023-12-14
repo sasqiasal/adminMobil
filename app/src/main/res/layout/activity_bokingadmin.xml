@@ -40,25 +40,115 @@
                     android:textSize="25dp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/inputnama"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tambah"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:minHeight="48dp"
-                    android:hint="Nama Pemesan" />
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/iconn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:drawableLeft="@drawable/baseline_person_pin_24"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_toEndOf="@+id/iconn"
+                            android:text="Nama Pemesan"
+                            tools:ignore="NotSibling" />
+
+                        <EditText
+                            android:id="@+id/txtnama"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:hint="Isikan Nama Pemesan"
+                            android:inputType="text"
+                            android:minHeight="48dp"
+                            android:padding="1dp"
+                            tools:ignore="TouchTargetSizeCheck" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardname"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/icon3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:drawableLeft="@drawable/baseline_local_phone_24"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_toEndOf="@+id/icon3"
+                            android:text="No Telepon"
+                            tools:ignore="NotSibling" />
+
+                        <EditText
+                            android:id="@+id/txttelepon"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@android:color/transparent"
+                            android:ems="10"
+                            android:hint="Isi nomer telepon pemesan"
+                            android:inputType="text"
+                            android:minHeight="48dp"
+                            android:padding="1dp"
+                            tools:ignore="TouchTargetSizeCheck" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/inputnama"
+                    android:layout_below="@id/card0"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
@@ -88,6 +178,7 @@
                             android:layout_marginTop="1dp"
                             android:layout_toEndOf="@+id/icon"
                             android:text="Penjemputan " />
+
                         <EditText
                             android:id="@+id/txtPenjemputan"
                             android:layout_width="200dp"
