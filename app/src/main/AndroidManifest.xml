@@ -17,10 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminMobile"
         tools:targetApi="31">
-        <activity android:name=".DetailRiwayatBokingAdmin"
+        <activity android:name=".BokingAdmin.DetailRiwayatBokingAdmin"
             android:exported="false"/>
         <activity
-            android:name=".Login"
+            android:name=".FragmentAkun.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,43 +28,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BokingAdmin"
+        <activity android:name=".BokingAdmin.BokingAdmin"
             android:exported="false"/>
 
-        <activity android:name=".DataProfileActivity"
+        <activity android:name=".FragmentAkun.DataProfileActivity"
             android:exported="false"/>
 
-        <activity android:name=".ProfileMitraActivity"
+        <activity android:name=".FragmentAkun.ProfileMitraActivity"
             android:exported="false"/>
 
-        <activity android:name=".SyaratKetentuanActivity"
+        <activity android:name=".FragmentAkun.SyaratKetentuanActivity"
             android:exported="false"/>
 
-        <activity android:name=".PusatBantuanActivity"
+        <activity android:name=".FragmentAkun.PusatBantuanActivity"
             android:exported="false"/>
 
-        <activity android:name=".AkunProfile"
+        <activity android:name=".FragmentAkun.AkunProfile"
             android:exported="false"/>
         <activity
-            android:name=".RincianBokingAdmin"
+            android:name=".BokingAdmin.RincianBokingAdmin"
             android:exported="false" />
         <activity
-            android:name=".DaftarBokingAdmin"
+            android:name=".BokingAdmin.DaftarBokingAdmin"
             android:exported="false" />
         <activity
-            android:name=".TambahMobil"
+            android:name=".Mobil.TambahMobil"
             android:exported="false" />
         <activity
-            android:name=".DataMobil"
+            android:name=".Mobil.DataMobil"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".FragmentAkun.Register"
             android:exported="true"/>
         <activity
-            android:name=".DetailRiwayat"
+            android:name=".Riwayatcustumuer.DetailRiwayat"
             android:exported="false" />
     </application>
 

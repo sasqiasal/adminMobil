@@ -1,4 +1,4 @@
-package com.example.adminmobile;
+package com.example.adminmobile.FragmentAkun;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.adminmobile.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**

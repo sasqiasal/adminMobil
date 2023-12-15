@@ -1,4 +1,4 @@
-package com.example.adminmobile;
+package com.example.adminmobile.FragmentAkun;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adminmobile.MainActivity;
+import com.example.adminmobile.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;

@@ -1,4 +1,4 @@
-package com.example.adminmobile;
+package com.example.adminmobile.Riwayatcustumuer;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adminmobile.Adapter.AdapterRiwayat;
 import com.example.adminmobile.Model.riwayatmodel;
+import com.example.adminmobile.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 

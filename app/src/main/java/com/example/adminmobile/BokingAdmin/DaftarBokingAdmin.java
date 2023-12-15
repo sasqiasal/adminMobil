@@ -1,4 +1,4 @@
-package com.example.adminmobile;
+package com.example.adminmobile.BokingAdmin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adminmobile.Adapter.AdapterRiwayatBokingAdmin;
+import com.example.adminmobile.MainActivity;
 import com.example.adminmobile.Model.RiwayatBokingAdminModel;
+import com.example.adminmobile.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,7 +48,7 @@ Button tambahjadwal;
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DaftarBokingAdmin.this,MainActivity.class);
+                Intent intent = new Intent(DaftarBokingAdmin.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

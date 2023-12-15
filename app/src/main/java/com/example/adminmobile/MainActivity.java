@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.adminmobile.FragmentAkun.AkunProfile;
+import com.example.adminmobile.Riwayatcustumuer.RiwayatFragment;
 import com.example.adminmobile.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;

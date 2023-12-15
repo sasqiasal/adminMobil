@@ -20,7 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.adminmobile.Model.Mobil;
 import com.example.adminmobile.Popup.popuphapus;
 import com.example.adminmobile.R;
-import com.example.adminmobile.TambahMobil;
+import com.example.adminmobile.Mobil.TambahMobil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;

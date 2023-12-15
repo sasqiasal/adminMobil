@@ -1,6 +1,6 @@
 package com.example.adminmobile.Adapter;
 
-import static com.example.adminmobile.DetailRiwayat.formatFirestoreTimestamp;
+import static com.example.adminmobile.Riwayatcustumuer.DetailRiwayat.formatFirestoreTimestamp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adminmobile.DetailRiwayat;
+import com.example.adminmobile.Riwayatcustumuer.DetailRiwayat;
 import com.example.adminmobile.Model.riwayatmodel;
 import com.example.adminmobile.R;
 import com.example.adminmobile.viewholder.riwayatviewholder;

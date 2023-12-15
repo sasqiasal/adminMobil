@@ -1,4 +1,4 @@
-package com.example.adminmobile;
+package com.example.adminmobile.FragmentAkun;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,18 +7,20 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SyaratKetentuanActivity extends AppCompatActivity {
-ImageButton btnback;
+import com.example.adminmobile.R;
+
+public class ProfileMitraActivity extends AppCompatActivity {
+ImageButton balek;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_syaratketentuan);
-        btnback =findViewById(R.id.back);
+        setContentView(R.layout.activity_profile_mitra);
+        balek = findViewById(R.id.back);
 
-        btnback.setOnClickListener(new View.OnClickListener() {
+        balek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inten = new Intent(SyaratKetentuanActivity.this, AkunProfile.class);
+                Intent inten = new Intent(ProfileMitraActivity.this, AkunProfile.class);
                 finish();
             }
         });

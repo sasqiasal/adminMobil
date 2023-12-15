@@ -5,17 +5,17 @@ import com.google.firebase.firestore.DocumentId;
 
 public class RiwayatBokingAdminModel {
 
-    public RiwayatBokingAdminModel(){
-    this.documentID = null;
-    this.NoHp =null;
-    this.IDMobil ="";
-    this.Namapemesan ="";
-    this.Penjemputan = "";
-    this.TanggalKembali="";
-    this.TanggalPinjam="";
-    this.Total="";
-    this.Tujuan="";
-    this.JumlahHari =0;
+    public RiwayatBokingAdminModel() {
+        this.documentID = null;
+        this.Tujuan = "";
+        this.IDMobil = "";
+        this.NoHp = "";
+        this.Namapemesan = "";
+        this.Penjemputan = "";
+        this.TanggalKembali = null;
+        this.TanggalPinjam = null;
+        this.Total = "";
+        this.JumlahHari = 0;
     }
 
     public String getIDMobil() {
@@ -25,8 +25,15 @@ public class RiwayatBokingAdminModel {
     public void setIDMobil(String IDMobil) {
         this.IDMobil = IDMobil;
     }
-    public Object getNoHp() { return NoHp;}
-    public void setNoHp(String NoHp) { NoHp = NoHp;}
+
+    public Object getNoHp() {
+        return NoHp;
+    }
+
+    public void setNoHp(String Nohp) {
+        NoHp = Nohp;
+    }
+
     public String getNamapemesan() {
         return Namapemesan;
     }
@@ -43,19 +50,21 @@ public class RiwayatBokingAdminModel {
         Penjemputan = penjemputan;
     }
 
-//    public Timestamp getTanggalKembali() { return TanggalKembali; }
-//
-//    public Void setTanggalKembali(Timestamp tanggalKembali) {
-//        TanggalKembali = tanggalKembali;
-//    }
-//
-//    public Timestamp getTanggalPinjam() {
-//        return TanggalPinjam;
-//    }
-//
-//    public void setTanggalPinjam(Timestamp tanggalPinjam) {
-//        TanggalPinjam = tanggalPinjam;
-//    }
+    public Timestamp getTanggalKembali() {
+        return TanggalKembali;
+    }
+
+    public void setTanggalKembali(Timestamp tanggalKembali) {
+        TanggalKembali = tanggalKembali;
+    }
+
+    public Timestamp getTanggalPinjam() {
+        return TanggalPinjam;
+    }
+
+    public void setTanggalPinjam(Timestamp tanggalPinjam) {
+        TanggalPinjam = tanggalPinjam;
+    }
 
     public String getTotal() {
         return Total;
@@ -84,11 +93,11 @@ public class RiwayatBokingAdminModel {
     String IDMobil;
     String Namapemesan;
     String Penjemputan;
-    String TanggalKembali;
-    String TanggalPinjam;
+    String NoHp;
+    private Timestamp TanggalKembali;
+    private Timestamp TanggalPinjam;
     String Total;
     String Tujuan;
-    Object NoHp;
     int JumlahHari;
 
     public String getDocumentID() {
@@ -96,6 +105,5 @@ public class RiwayatBokingAdminModel {
     }
 
     @DocumentId
-    String documentID;
+    private String documentID;
 }
-

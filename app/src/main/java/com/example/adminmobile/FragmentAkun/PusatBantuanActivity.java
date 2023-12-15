@@ -1,4 +1,4 @@
-package com.example.adminmobile;
+package com.example.adminmobile.FragmentAkun;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.adminmobile.R;
 
 public class PusatBantuanActivity extends AppCompatActivity {
     ImageButton balek;

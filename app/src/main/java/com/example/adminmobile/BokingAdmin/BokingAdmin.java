@@ -1,4 +1,4 @@
-package com.example.adminmobile;
+package com.example.adminmobile.BokingAdmin;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.adminmobile.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -85,8 +86,6 @@ public class BokingAdmin extends AppCompatActivity {
         editHp = findViewById(R.id.txttelepon);
         editTanggalpinjam = findViewById(R.id.txtTanggalPinjam);
         editTanggalkembali = findViewById(R.id.txtTanggalKembali);
-
-
         btnsimpan = findViewById(R.id.buttontambahjadwal);
         balek = findViewById(R.id.back);
 
@@ -267,6 +266,7 @@ public class BokingAdmin extends AppCompatActivity {
             }
         });
         btnsimpan.setOnClickListener(new View.OnClickListener(){
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             @Override
             public void onClick(View v) {
                 String jamberangkat = jam.getText().toString().trim();
@@ -278,6 +278,14 @@ public class BokingAdmin extends AppCompatActivity {
                 String tglkembali= editTanggalkembali.getText().toString().trim();
                 String mobil = spinerr.getSelectedItem().toString();
 //              String mobilhr = spinerr.getSelectedItem().toString();
+
+                Date tanggalPeminjaman, tanggalPengembalian;
+                try {
+                    tanggalPeminjaman = formatter.parse(tglpinjam);
+                    tanggalPengembalian = formatter.parse(tglkembali);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
 
                 Log.d("onClick", "onClick: idMobil" + IDMobil);
                 if(penjemputan.isEmpty()){
@@ -328,7 +336,7 @@ public class BokingAdmin extends AppCompatActivity {
                             intent.putExtra("TanggalKembali", tglkembali);
                             intent.putExtra("IDMobil", IDMobil);
                             intent.putExtra("JumlahHari", hari);
-                           intent.putExtra("NoHp",hpp);
+                            intent.putExtra("NoHp",hpp);
                             intent.putExtra("DocumentID",documentReference.getId());
                             startActivity(intent);
                         }
