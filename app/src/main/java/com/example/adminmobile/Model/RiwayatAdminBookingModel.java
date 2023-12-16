@@ -2,7 +2,7 @@ package com.example.adminmobile.Model;
 
 import com.google.firebase.Timestamp;
 
-public class RiwayatBokingAdminModel {
+public class RiwayatAdminBookingModel {
     String IDMobil;
     String NamaPenyewa;
     String NoHp;
@@ -15,16 +15,16 @@ public class RiwayatBokingAdminModel {
     Timestamp TanggalKembali, TanggalPinjam;
 //    Date TanggalKembali, TanggalPinjam;
 
-    public RiwayatBokingAdminModel() {
-        this.JamBerangkat = "";
-        this.IDMobil = "";
+    public RiwayatAdminBookingModel() {
+        this.JamBerangkat = null;
+        this.IDMobil = null;
         this.JumlahHari = 0;
-        this.NamaPenyewa = "";
-        this.NoHp = "";
-        this.Penjemputan = "";
-        this.Total = "";
-        this.Tujuan = "";
-        this.UID = "";
+        this.NamaPenyewa = null;
+        this.NoHp = null;
+        this.Penjemputan = null;
+        this.Total = null;
+        this.Tujuan = null;
+        this.UID = null;
         this.TanggalKembali = null;
         this.TanggalPinjam = null;
     }
@@ -97,11 +97,5 @@ public class RiwayatBokingAdminModel {
     public void setUID(String UID) {
         this.UID = UID;
     }
-    public Timestamp getTanggalPinjam() {return TanggalPinjam;}
-
-    public void setTanggalPinjam(Timestamp tanggalPinjam) {
-        TanggalPinjam = tanggalPinjam;
-    }
-
 
 }

@@ -140,8 +140,8 @@ public class RincianBokingAdmin extends AppCompatActivity {
         dbReff.get().addOnSuccessListener(documentSnapshot -> {
 
             String Tuju = documentSnapshot.getString("Tujuan");
-            String TglP = documentSnapshot.getString("TanggalPinjam");
-            String TglK = documentSnapshot.getString("TanggalKembali");
+            String TglP = documentSnapshot.get("TanggalPinjam").toString();
+            String TglK = documentSnapshot.get("TanggalKembali").toString();
             String Mob = documentSnapshot.getString("NamaMobil");
             String Nma = documentSnapshot.getString("Namapemesan");
 

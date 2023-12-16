@@ -38,14 +38,13 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
 //        Toast.makeText(this, bundle.getString("uid"), Toast.LENGTH_SHORT).show();
         if (bundle != null){
             tvjam.setText(bundle.getString("jam"));
-
-            tvhp.setText(Integer.toString(bundle.getInt("No")));
+            tvhp.setText(bundle.getString("No"));
             tvTujuan.setText(bundle.getString("tujuan"));
             tvTotal.setText(bundle.getString("total"));
-            tvTanggalpinjam.setText(bundle.getString("tanggalpinjam"));
-            tvHari .setText(Integer.toString(bundle.getInt("hari")));
-            tvNama .setText(bundle.getString("namapenyewa"));
-            tvTanggalkembali .setText(bundle.getString("tanggalkembali"));
+            tvTanggalpinjam.setText(bundle.get("tanggalpinjam").toString());
+            tvTanggalkembali .setText(bundle.get("tanggalkembali").toString());
+            tvHari .setText(bundle.getString("hari"));
+            tvNama .setText(bundle.getString("namapemesan"));
             tvpenjemputan .setText(bundle.getString("penjemputan"));
 
 
@@ -54,7 +53,6 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     tvjam.setText(documentSnapshot.get("JamBerangkat").toString());
-
                     tvNama.setText(documentSnapshot.get("Namapemesan").toString());
                     tvpenjemputan.setText(documentSnapshot.get("Penjemputan").toString());
                     tvHari.setText(documentSnapshot.get("JumlahHari").toString());

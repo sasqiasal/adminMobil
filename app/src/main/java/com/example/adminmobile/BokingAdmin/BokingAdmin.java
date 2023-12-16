@@ -165,7 +165,7 @@ public class BokingAdmin extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
                 //Showing the picked value in the textView
-                editTanggalpinjam.setText(String.valueOf(year)+ "."+String.valueOf(month +1)+ "."+String.valueOf(day));
+                editTanggalpinjam.setText(String.valueOf(year)+ "-"+String.valueOf(month +1)+ "-"+String.valueOf(day));
 
             }
         }, 2023, 12, 1);
@@ -179,7 +179,7 @@ public class BokingAdmin extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
                 //Showing the picked value in the textView
-                editTanggalkembali.setText(String.valueOf(year)+ "."+String.valueOf(month +1)+ "."+String.valueOf(day));
+                editTanggalkembali.setText(String.valueOf(year)+ "-"+String.valueOf(month +1)+ "-"+String.valueOf(day));
 
 
 
@@ -206,7 +206,7 @@ public class BokingAdmin extends AppCompatActivity {
         String pickUpDateawl = editTanggalpinjam.getText().toString();
         String returnDateakhr = editTanggalkembali.getText().toString();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date pickUpDate1 = sdf.parse(pickUpDateawl);
             Date returnDate2 = sdf.parse(returnDateakhr);
@@ -256,8 +256,6 @@ public class BokingAdmin extends AppCompatActivity {
         });
 
 
-
-
         jam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -266,7 +264,6 @@ public class BokingAdmin extends AppCompatActivity {
             }
         });
         btnsimpan.setOnClickListener(new View.OnClickListener(){
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             @Override
             public void onClick(View v) {
                 String jamberangkat = jam.getText().toString().trim();
@@ -279,6 +276,7 @@ public class BokingAdmin extends AppCompatActivity {
                 String mobil = spinerr.getSelectedItem().toString();
 //              String mobilhr = spinerr.getSelectedItem().toString();
 
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date tanggalPeminjaman, tanggalPengembalian;
                 try {
                     tanggalPeminjaman = formatter.parse(tglpinjam);
@@ -287,6 +285,7 @@ public class BokingAdmin extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
 
+
                 Log.d("onClick", "onClick: idMobil" + IDMobil);
                 if(penjemputan.isEmpty()){
                     editPenjemputan.setError("penjemputan tidak boleh kosong");
@@ -294,8 +293,8 @@ public class BokingAdmin extends AppCompatActivity {
                     editNama.setError("tujuan tidak boleh kosong");
                 }else if (tujuan.isEmpty()) {
                     editTujuan.setError("tujuan tidak boleh kosong");
-                }else if (NamaBose.isEmpty()) {
-                    editNama.setError("tujuan tidak boleh kosong");
+                }else if (hpp.isEmpty()) {
+                    editHp.setError("tujuan tidak boleh kosong");
                 } else if (tglpinjam.isEmpty()) {
                     editTanggalpinjam.setError("pilih tanggal pinjam");
                 } else if (tglkembali.isEmpty()) {
@@ -317,27 +316,27 @@ public class BokingAdmin extends AppCompatActivity {
                     user.put("Namapemesan", NamaBose);
                     user.put("Penjemputan", penjemputan);
                     user.put("Tujuan", tujuan);
-                    user.put("TanggalPinjam", tglpinjam);
-                    user.put("TanggalKembali", tglkembali);
+                    user.put("TanggalPinjam",tanggalPeminjaman);
+                    user.put("TanggalKembali", tanggalPengembalian);
                     user.put("IDMobil", IDMobil);
                     user.put("NoHp",hpp);
                     user.put("JumlahHari", hari);
 
                     CollectionReference dbReff = db.collection("Boking_Admin");
 
-                    dbReff.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    dbReff.add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
                             Intent intent = new Intent(BokingAdmin.this, RincianBokingAdmin.class);
                             intent.putExtra("Namapemesan", NamaBose);
                             intent.putExtra("JamBerangkat", jamberangkat);
                             intent.putExtra("Tujuan",tujuan);
-                            intent.putExtra("TanggalPinjam", tglpinjam);
+                            intent.putExtra("TanggalPinjam",tglpinjam );
                             intent.putExtra("TanggalKembali", tglkembali);
                             intent.putExtra("IDMobil", IDMobil);
                             intent.putExtra("JumlahHari", hari);
                             intent.putExtra("NoHp",hpp);
-                            intent.putExtra("DocumentID",documentReference.getId());
+                            intent.putExtra("DocumentID",task.getResult().getId());
                             startActivity(intent);
                         }
                     });

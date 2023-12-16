@@ -33,9 +33,11 @@ Button tambahjadwal;
 
         Query query = FirebaseFirestore.getInstance().collection("Boking_Admin");
 
+
         FirestoreRecyclerOptions<RiwayatBokingAdminModel> option = new FirestoreRecyclerOptions.Builder<RiwayatBokingAdminModel>()
                 .setQuery(query, RiwayatBokingAdminModel.class)
                 .build();
+
 
         AdapterRiwayatBokingAdmin adapterRiwayat = new AdapterRiwayatBokingAdmin(option);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

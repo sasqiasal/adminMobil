@@ -1,17 +1,15 @@
 package com.example.adminmobile.Adapter;
 
 
-
+import static com.example.adminmobile.BokingAdmin.DetailRiwayatBokingAdmin.formatFirestoreTimestamp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.google.firebase.Timestamp;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,11 +34,10 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
 
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RiwayatBokingAdminModel model) {
-        Log.d("Bind", "onBindViewHolder: " + "namamobil" +model.getIDMobil() + "tujuan" +model.getTujuan() +"pinjam" + model.getTanggalPinjam());
 
         holder.namamobil.setText(model.getIDMobil());
         holder.tuju.setText(model.getTujuan());
-        holder.pinjam.setText(ViewHolder.formatFirestoreTimestampp(model.getTanggalPinjam()));
+        holder.pinjam.setText(formatFirestoreTimestamp(model.getTanggalPinjam()));
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Data_Mobil").document(model.getIDMobil()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -53,10 +50,10 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
             Intent intent = new Intent(holder.context, DetailRiwayatBokingAdmin.class);
 
             intent.putExtra("tujuan",model.getTujuan());
-            intent.putExtra("tanggalpinjam",model.getTanggalPinjam());
-//            intent.putExtra("hari",model.getJumlahHari());
-//            intent.putExtra("total",model.getTotal());
-            intent.putExtra("uid", model.getDocumentID());
+            intent.putExtra("tanggalpinjam",ViewHolder.formatFirestoreTimestampp(model.getTanggalPinjam().toDate()));
+            intent.putExtra("hari",model.getJumlahHari());
+            intent.putExtra("total",model.getTotal());
+            intent.putExtra("uid", model.getUID());
 
 
 
@@ -65,7 +62,11 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
     }
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listbokingadmin,parent,false));
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View mobilView = inflater.inflate(R.layout.listbokingadmin,parent,false);
+        ViewHolder viewHolder = new ViewHolder(mobilView);
+        return viewHolder;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -87,13 +88,13 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
 
         }
-        public static String formatFirestoreTimestampp(Timestamp firestoreTimestamp) {
+        public static String formatFirestoreTimestampp(Date firestoreTimestamp) {
             // Convert Firestore timestamp to Java Date object
-            Date dateObject = firestoreTimestamp.toDate();
+
 
             // Format the date to "dd-MMMM-yyyy"
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
-            return dateFormat.format(dateObject);
+            return dateFormat.format(firestoreTimestamp);
         }
     }
 }
