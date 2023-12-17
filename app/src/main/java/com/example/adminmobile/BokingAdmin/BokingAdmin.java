@@ -290,11 +290,13 @@ public class BokingAdmin extends AppCompatActivity {
                 if(penjemputan.isEmpty()){
                     editPenjemputan.setError("penjemputan tidak boleh kosong");
                 } else if (NamaBose.isEmpty()) {
-                    editNama.setError("tujuan tidak boleh kosong");
+                    jam.setError("Pilih jam penjemputam");
+                }else if (NamaBose.isEmpty()) {
+                    editNama.setError("Nama tidak boleh kosong");
                 }else if (tujuan.isEmpty()) {
                     editTujuan.setError("tujuan tidak boleh kosong");
                 }else if (hpp.isEmpty()) {
-                    editHp.setError("tujuan tidak boleh kosong");
+                    editHp.setError("Nomor tidak boleh kosong");
                 } else if (tglpinjam.isEmpty()) {
                     editTanggalpinjam.setError("pilih tanggal pinjam");
                 } else if (tglkembali.isEmpty()) {

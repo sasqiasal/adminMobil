@@ -1,6 +1,5 @@
 package com.example.adminmobile.BokingAdmin;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -18,7 +17,7 @@ import java.util.Date;
 public class DetailRiwayatBokingAdmin extends AppCompatActivity {
     EditText  tvjam, tvhp,tvpenjemputan, tvTujuan, tvNama, tvmobil, tvTanggalpinjam,tvTanggalkembali, tvHari, tvTotal;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +40,6 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
             tvhp.setText(bundle.getString("No"));
             tvTujuan.setText(bundle.getString("tujuan"));
             tvTotal.setText(bundle.getString("total"));
-            tvTanggalpinjam.setText(bundle.get("tanggalpinjam").toString());
-            tvTanggalkembali .setText(bundle.get("tanggalkembali").toString());
             tvHari .setText(bundle.getString("hari"));
             tvNama .setText(bundle.getString("namapemesan"));
             tvpenjemputan .setText(bundle.getString("penjemputan"));
@@ -53,13 +50,13 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     tvjam.setText(documentSnapshot.get("JamBerangkat").toString());
-                    tvNama.setText(documentSnapshot.get("Namapemesan").toString());
-                    tvpenjemputan.setText(documentSnapshot.get("Penjemputan").toString());
+                    tvhp.setText(documentSnapshot.get("NoHp").toString());
                     tvHari.setText(documentSnapshot.get("JumlahHari").toString());
                     tvTanggalpinjam.setText(formatFirestoreTimestamp(documentSnapshot.getTimestamp("TanggalPinjam")));
-                    tvTanggalkembali.setText(formatFirestoreTimestamp(documentSnapshot.getTimestamp("TanggalKembali")));
-                    tvhp.setText(documentSnapshot.get("NoHp").toString());
                     tvTujuan.setText(documentSnapshot.get("Tujuan").toString());
+                    tvpenjemputan.setText(documentSnapshot.get("Penjemputan").toString());
+                    tvTanggalkembali.setText(formatFirestoreTimestamp(documentSnapshot.getTimestamp("TanggalKembali")));
+                    tvNama.setText(documentSnapshot.get("Namapemesan").toString());
                     tvTotal.setText(documentSnapshot.get("Total").toString());
 
                     db.collection("Data_Mobil").document(documentSnapshot.get("IDMobil").toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

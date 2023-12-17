@@ -1,6 +1,7 @@
 package com.example.adminmobile.BokingAdmin;
 
-import android.annotation.SuppressLint;
+import static com.example.adminmobile.BokingAdmin.DetailRiwayatBokingAdmin.formatFirestoreTimestamp;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,7 +32,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
     FirebaseAuth Auth;
     Long jumlahHari;
 
-    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -105,43 +107,15 @@ public class RincianBokingAdmin extends AppCompatActivity {
                             }
                         });
 
-//                String jmlh = total.getText().toString().trim();
-
-//                clickPay();
-//                // Membuat referensi ke dokumen "Booking" menggunakan UID
-//                assert bookingUid != null;
-//                DocumentReference bookingRef = FirebaseFirestore.getInstance().collection("Boking_Admin").document(bookingUid);
 //
-//
-//                // Mengupdate field "Total" pada dokumen "Booking" dengan nilai yang diambil dari EditText
-//                bookingRef
-//                        .update("Total", jmlh)
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                // Tambahkan tindakan yang ingin Anda lakukan setelah berhasil menyimpan total
-//                                // Contoh: Menampilkan pesan sukses atau pindah ke halaman lain
-//
-//                                Toast.makeText(RincianBokingAdmin.this, "Total berhasil disimpan", Toast.LENGTH_SHORT).show();
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                // Tambahkan tindakan yang ingin Anda lakukan jika penyimpanan gagal
-//                                Log.e("TAG", "Gagal menyimpan total", e);
-//                                Toast.makeText(RincianBokingAdmin.this, "Gagal menyimpan total", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
             }
         });
 
         DocumentReference dbReff = db.collection("Boking_Admin").document(bookingUid );
         dbReff.get().addOnSuccessListener(documentSnapshot -> {
-
+            Timestamp TglP = documentSnapshot.getTimestamp("TanggalPinjam");
+            Timestamp TglK = documentSnapshot.getTimestamp("TanggalKembali");
             String Tuju = documentSnapshot.getString("Tujuan");
-            String TglP = documentSnapshot.get("TanggalPinjam").toString();
-            String TglK = documentSnapshot.get("TanggalKembali").toString();
             String Mob = documentSnapshot.getString("NamaMobil");
             String Nma = documentSnapshot.getString("Namapemesan");
 
@@ -154,8 +128,8 @@ public class RincianBokingAdmin extends AppCompatActivity {
 //                Log.d("dataprofile", "total" +ttl);
 
             tujuan.setText(Tuju);
-            tglpnjm.setText(TglP);
-//            tglkmbli.setText(TglK);
+            tglpnjm.setText(formatFirestoreTimestamp(TglP));
+            tglkmbli.setText(formatFirestoreTimestamp(TglK));
             mobil.setText(Mob);
             nama.setText(Nma);
 //                total.setText(ttl);
@@ -164,7 +138,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
             tglkmbli.setText(getIntent().getStringExtra("TanggalKembali"));
             mobil.setText(getIntent().getStringExtra("NamaMobil"));
             nama.setText(getIntent().getStringExtra("Namapemesan"));
-//                total.setText(getIntent().getStringExtra("JumlahHari"));
+            total.setText(getIntent().getStringExtra("JumlahHari"));
 
         }).addOnFailureListener(new OnFailureListener() {
             @Override

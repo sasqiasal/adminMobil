@@ -1,6 +1,7 @@
 package com.example.adminmobile.Model;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentId;
 
 public class RiwayatBokingAdminModel {
     String IDMobil;
@@ -9,6 +10,7 @@ public class RiwayatBokingAdminModel {
     String Penjemputan;
     String Total;
     String Tujuan;
+    @DocumentId
     String UID;
     String JamBerangkat;
     int JumlahHari;

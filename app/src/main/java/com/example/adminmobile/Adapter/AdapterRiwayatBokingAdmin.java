@@ -5,6 +5,7 @@ import static com.example.adminmobile.BokingAdmin.DetailRiwayatBokingAdmin.forma
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
 
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RiwayatBokingAdminModel model) {
-
+        Log.d("TestID", "onBindViewHolder: "+ model.getUID());
         holder.namamobil.setText(model.getIDMobil());
         holder.tuju.setText(model.getTujuan());
         holder.pinjam.setText(formatFirestoreTimestamp(model.getTanggalPinjam()));
@@ -49,11 +50,12 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
         holder.inti.setOnClickListener(view -> {
             Intent intent = new Intent(holder.context, DetailRiwayatBokingAdmin.class);
 
+            intent.putExtra("uid", model.getUID());
             intent.putExtra("tujuan",model.getTujuan());
             intent.putExtra("tanggalpinjam",ViewHolder.formatFirestoreTimestampp(model.getTanggalPinjam().toDate()));
             intent.putExtra("hari",model.getJumlahHari());
             intent.putExtra("total",model.getTotal());
-            intent.putExtra("uid", model.getUID());
+
 
 
 

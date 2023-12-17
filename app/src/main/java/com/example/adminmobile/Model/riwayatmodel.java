@@ -16,7 +16,7 @@ public class riwayatmodel {
 //    Date TanggalKembali, TanggalPinjam;
 
     public riwayatmodel() {
-        this.JamBerangkat = null;
+        this.JamBerangkat =null;
         this.IDMobil = null;
         this.JumlahHari = 0;
         this.NamaPenyewa = null;
