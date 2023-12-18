@@ -34,6 +34,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
 
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
 
 
@@ -104,6 +105,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
                                 Toast.makeText(RincianBokingAdmin.this, "Total berhasil disimpan", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RincianBokingAdmin.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                         });
 
@@ -146,5 +148,32 @@ public class RincianBokingAdmin extends AppCompatActivity {
 
             }
         });
+    }
+    private void deletketikagagal(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String bookingUid = getIntent().getStringExtra("DocumentID");
+
+// Create a reference to the "Booking" document using the UID
+        DocumentReference bookingRef = db.collection("Boking_Admin").document(bookingUid);
+
+// Delete the document
+        bookingRef.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Document successfully deleted
+                        Toast.makeText(RincianBokingAdmin.this, "GAGAL TRANSAKSI", Toast.LENGTH_SHORT).show();
+                        finish(); // Add any additional actions after successful deletion
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle any errors that occurred during the deletion
+                        Log.e("TAG", "Error deleting document", e);
+                        Toast.makeText(RincianBokingAdmin.this, "Error deleting booking", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 }

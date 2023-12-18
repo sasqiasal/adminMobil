@@ -73,7 +73,7 @@ public class Home extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), DaftarBokingAdmin.class);
                 startActivity(intent);
-                getActivity().finish();
+//                getActivity().finish();
 
             }
         });
@@ -85,7 +85,7 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), DataMobil.class);
                 startActivity(intent);
-                getActivity().finish();
+//                getActivity().finish();
 
 
             }});

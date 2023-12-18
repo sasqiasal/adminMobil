@@ -326,6 +326,25 @@ public class BokingAdmin extends AppCompatActivity {
 
                     CollectionReference dbReff = db.collection("Boking_Admin");
 
+//                    dbReff.add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                        @Override
+//                        public void onSuccess(DocumentReference documentReference) {
+//                            Intent intent = new Intent(BokingAdmin.this, RincianBokingAdmin.class);
+//                            intent.putExtra("JamBerangkat", jamberangkat);
+//                            intent.putExtra("Tujuan",tujuan);
+//                            intent.putExtra("TanggalPinjam",tglpinjam );
+//                            intent.putExtra("TanggalKembali", tglkembali);
+//                            intent.putExtra("IDMobil", IDMobil);
+//                            intent.putExtra("JumlahHari", hari);
+//                            intent.putExtra("NoHp",hpp);
+//                            intent.putExtra("DocumentID", documentReference.getId());
+//
+////                            intent.putExtra("DocumentID",task.getResult().getId());
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    });
+
                     dbReff.add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -339,7 +358,9 @@ public class BokingAdmin extends AppCompatActivity {
                             intent.putExtra("JumlahHari", hari);
                             intent.putExtra("NoHp",hpp);
                             intent.putExtra("DocumentID",task.getResult().getId());
+//                            intent.putExtra("DocumentID",task.getResult().getId());
                             startActivity(intent);
+                            finish();
                         }
                     });
                 }
