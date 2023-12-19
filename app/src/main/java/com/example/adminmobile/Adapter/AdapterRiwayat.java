@@ -43,10 +43,10 @@ public class AdapterRiwayat extends RecyclerView.Adapter<riwayatviewholder>{
         String jam, hp, tujuan, total, namapenyewa, penjemputan, namamobil;
         String pinjam, kembali;
         int hari;
-        jam = dataRes.get(position).getJam();
+        jam = dataRes.get(position).getJamBerangkat();
         hp = dataRes.get(position).getNoHp();
         tujuan = dataRes.get(position).getTujuan();
-        namamobil = dataRes.get(position).getIDMobil();
+//        namamobil = dataRes.get(position).getIDMobil();
         total = dataRes.get(position).getTotal();
         hari = dataRes.get(position).getJumlahHari();
         pinjam = formatFirestoreTimestamp(dataRes.get(position).getTanggalPinjam());

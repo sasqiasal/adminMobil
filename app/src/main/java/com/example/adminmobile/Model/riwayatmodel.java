@@ -10,6 +10,15 @@ public class riwayatmodel {
     String Total;
     String Tujuan;
     String UID;
+
+    public String getJamBerangkat() {
+        return JamBerangkat;
+    }
+
+    public void setJamBerangkat(String jamBerangkat) {
+        JamBerangkat = jamBerangkat;
+    }
+
     String JamBerangkat;
     int JumlahHari;
     Timestamp TanggalKembali, TanggalPinjam;
@@ -28,11 +37,7 @@ public class riwayatmodel {
         this.TanggalKembali = null;
         this.TanggalPinjam = null;
     }
-    public String getJam() {return JamBerangkat;
-    }
 
-    public void setJam(String jam) {this.JamBerangkat = jam;
-    }
 
     public String getIDMobil() {
         return IDMobil;
