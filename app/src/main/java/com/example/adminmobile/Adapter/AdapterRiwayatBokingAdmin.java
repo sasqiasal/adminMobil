@@ -35,33 +35,72 @@ public class AdapterRiwayatBokingAdmin extends FirestoreRecyclerAdapter<RiwayatB
 
 
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RiwayatBokingAdminModel model) {
-        Log.d("TestID", "onBindViewHolder: "+ model.getUID());
-        holder.namamobil.setText(model.getIDMobil());
-        holder.tuju.setText(model.getTujuan());
-        holder.pinjam.setText(formatFirestoreTimestamp(model.getTanggalPinjam()));
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Data_Mobil").document(model.getIDMobil()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                holder.namamobil.setText(documentSnapshot.getString("Nama"));
-            }
-        });
+        Log.d("TestID", "onBindViewHolder: " + model.getDocumentID());
 
-        holder.inti.setOnClickListener(view -> {
-            Intent intent = new Intent(holder.context, DetailRiwayatBokingAdmin.class);
+        // Periksa apakah dokumen memiliki field "mimin" yang diatur ke true
+        if (model.isMimin()) {
+            holder.namamobil.setText(model.getIDMobil());
+            holder.tuju.setText(model.getTujuan());
+            holder.pinjam.setText(formatFirestoreTimestamp(model.getTanggalPinjam()));
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("Data_Mobil").document(model.getIDMobil()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    holder.namamobil.setText(documentSnapshot.getString("Nama"));
+                }
+            });
 
-            intent.putExtra("uid", model.getUID());
-            intent.putExtra("tujuan",model.getTujuan());
-            intent.putExtra("tanggalpinjam",ViewHolder.formatFirestoreTimestampp(model.getTanggalPinjam().toDate()));
-            intent.putExtra("hari",model.getJumlahHari());
-            intent.putExtra("total",model.getTotal());
+            holder.inti.setOnClickListener(view -> {
+                Intent intent = new Intent(holder.context, DetailRiwayatBokingAdmin.class);
 
+                intent.putExtra("uid", model.getDocumentID());
+                intent.putExtra("tujuan", model.getTujuan());
+                intent.putExtra("tanggalpinjam", ViewHolder.formatFirestoreTimestampp(model.getTanggalPinjam().toDate()));
+                intent.putExtra("hari", model.getJumlahHari());
+                intent.putExtra("total", model.getTotal());
 
-
-
-            holder.context.startActivity(intent);
-        });
+                holder.context.startActivity(intent);
+            });
+        } else {
+            // Sembunyikan tampilan untuk dokumen di mana "mimin" tidak benar
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+        }
     }
+
+        //        Log.d("TestID", "onBindViewHolder: "+ model.getDocumentID());
+//
+//        holder.namamobil.setText(model.getIDMobil());
+//        holder.tuju.setText(model.getTujuan());
+//        holder.pinjam.setText(formatFirestoreTimestamp(model.getTanggalPinjam()));
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        db.collection("Data_Mobil").document(model.getIDMobil()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                holder.namamobil.setText(documentSnapshot.getString("Nama"));
+//
+//         holder.inti.setOnClickListener(view -> {
+//                        Intent intent = new Intent(holder.context, DetailRiwayatBokingAdmin.class);
+////
+//                        intent.putExtra("uid", model.getDocumentID());
+//                        intent.putExtra("tujuan",model.getTujuan());
+//                        intent.putExtra("tanggalpinjam",ViewHolder.formatFirestoreTimestampp(model.getTanggalPinjam().toDate()));
+//                        intent.putExtra("hari",model.getJumlahHari());
+//                        intent.putExtra("total",model.getTotal());
+//
+//
+//
+//
+//                        holder.context.startActivity(intent);
+//
+//
+//                });
+//            }
+//        });
+//
+//
+
+//    }
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();

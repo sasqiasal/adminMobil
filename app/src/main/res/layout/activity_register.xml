@@ -115,7 +115,7 @@
     <Button
         android:id="@+id/btndaftar"
         android:layout_width="162dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -125,7 +125,7 @@
         android:layout_marginBottom="193dp"
         android:background="@drawable/rounded_button"
         android:text="Register"
-        android:textSize="20dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textView1"

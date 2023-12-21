@@ -53,11 +53,11 @@ public class BokingAdmin extends AppCompatActivity {
     String IDMobil;
 
     private TextView editTanggalkembali, editTanggalpinjam;
-    private EditText editPenjemputan, editTujuan, editNamamobil,editHp, editNama;
+    private EditText editPenjemputan, editTujuan, editNamamobil, editHp, editNama;
     private Spinner spinerr;
     private ImageButton balek;
     private ArrayList<String> arrayMobil;
-    private  ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
     private QuerySnapshot mobiles;
     private ProgressDialog progressDialog;
     int hour, minute;
@@ -65,10 +65,6 @@ public class BokingAdmin extends AppCompatActivity {
 
 
     private long totalHari, hri;
-
-
-
-
 
 
     @Override
@@ -129,7 +125,6 @@ public class BokingAdmin extends AppCompatActivity {
         });
 
 
-
         spinerr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -146,26 +141,27 @@ public class BokingAdmin extends AppCompatActivity {
 
     }
 
-    private void pilihjam(){
+    private void pilihjam() {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 hour = selectedHour;
                 minute = selectedMinute;
-                jam.setText(String.format(Locale.getDefault(),"%02d:%02d",hour, minute));
+                jam.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
         timePickerDialog.setTitle("Select time");
         timePickerDialog.show();
     }
-    private void openDatePicker1(){
+
+    private void openDatePicker1() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
                 //Showing the picked value in the textView
-                editTanggalpinjam.setText(String.valueOf(year)+ "-"+String.valueOf(month +1)+ "-"+String.valueOf(day));
+                editTanggalpinjam.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(day));
 
             }
         }, 2023, 12, 1);
@@ -173,14 +169,13 @@ public class BokingAdmin extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private void openDatePicker2(){
+    private void openDatePicker2() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
                 //Showing the picked value in the textView
-                editTanggalkembali.setText(String.valueOf(year)+ "-"+String.valueOf(month +1)+ "-"+String.valueOf(day));
-
+                editTanggalkembali.setText(String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(day));
 
 
             }
@@ -189,7 +184,6 @@ public class BokingAdmin extends AppCompatActivity {
         datePickerDialog.show();
 
     }
-
 
 
     private static String generateAutoId() {
@@ -224,22 +218,22 @@ public class BokingAdmin extends AppCompatActivity {
     }
 
 
-    private void getDataSpin(){
+    private void getDataSpin() {
         progressDialog.show();
         db.collection("Data_Mobil").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 progressDialog.show();
                 mobiles = queryDocumentSnapshots;
-                if (queryDocumentSnapshots.size()>0){
+                if (queryDocumentSnapshots.size() > 0) {
                     arrayMobil.clear();
-                    for (DocumentSnapshot doc : queryDocumentSnapshots){
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
                         arrayMobil.add(doc.getString("Nama"));
 
                     }
                     adapter.notifyDataSetChanged();
                     progressDialog.dismiss();
-                }else{
+                } else {
                     Toast.makeText(getApplicationContext(), "data idak ada", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
@@ -263,16 +257,102 @@ public class BokingAdmin extends AppCompatActivity {
 
             }
         });
-        btnsimpan.setOnClickListener(new View.OnClickListener(){
+
+        btnsimpan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
+//                IDMobil = mobiles.getDocuments().get(i).getId();
+
+                String Spin = spinerr.getSelectedItem().toString().trim();
+//                String sp = String.valueOf(Spin == IDMobil);
+                Date cektanggalPeminjaman, cektanggalPengembalian;
+                String tglPinjam = editTanggalpinjam.getText().toString().trim();
+                String tglKembali = editTanggalkembali.getText().toString().trim();
+
+                try {
+                    cektanggalPeminjaman = formatter.parse(tglPinjam);
+                    cektanggalPengembalian = formatter.parse(tglKembali);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                // Check if the email exists in the "Adminn" collection
+                db.collection("Booking")
+                        .whereEqualTo("IDMobil", IDMobil)
+                        .whereGreaterThanOrEqualTo("TanggalPinjam", cektanggalPeminjaman)
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (!task.getResult().isEmpty()) {
+
+
+//                                            db.collection("Booking")
+//                                                    .whereEqualTo()
+//penyimpanandata();
+                                Toast.makeText(getApplicationContext(), "mobil tidak tersedia", Toast.LENGTH_SHORT).show();
+
+
+                                // Email exists in the "Adminn" collection, proceed with login
+
+
+                            } else {
+                                simpandata();
+                                Toast.makeText(getApplicationContext(), "mobil  tersedia", Toast.LENGTH_SHORT).show();
+
+
+//
+//                                db.collection("Boking_Admin")
+//                                        .whereEqualTo("IDMobil", IDMobil)
+//                                        .whereGreaterThanOrEqualTo("TanggalPinjam", cektanggalPeminjaman)
+//                                        .get()
+//                                        .addOnCompleteListener(tsk -> {
+//                                            if (!tsk.getResult().isEmpty()) {
+//
+//
+////                                            db.collection("Booking")
+////                                                    .whereEqualTo()
+////penyimpanandata();
+//                                                Toast.makeText(getApplicationContext(), "mobil tidak tersedia", Toast.LENGTH_SHORT).show();
+//
+//
+//                                                // Email exists in the "Adminn" collection, proceed with login
+//
+//
+//                                            } else {
+//
+//                                                simpandata();
+//                                                Toast.makeText(getApplicationContext(), "mobil  tersedia", Toast.LENGTH_SHORT).show();
+//
+//
+//                                                // Email does not exist in the "Adminn" collection
+//
+//
+//                                            }
+//
+//                                        });
+                            }
+                        });
+
+            }
+
+            //        btnsimpan.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+//
+//
+//    }
+            private void simpandata() {
                 String jamberangkat = jam.getText().toString().trim();
-                String NamaBose= editNama.getText().toString().trim();
+                String NamaBose = editNama.getText().toString().trim();
                 String hpp = editHp.getText().toString().trim();
                 String penjemputan = editPenjemputan.getText().toString().trim();
                 String tujuan = editTujuan.getText().toString().trim();
                 String tglpinjam = editTanggalpinjam.getText().toString().trim();
-                String tglkembali= editTanggalkembali.getText().toString().trim();
+                String tglkembali = editTanggalkembali.getText().toString().trim();
                 String mobil = spinerr.getSelectedItem().toString();
 //              String mobilhr = spinerr.getSelectedItem().toString();
 
@@ -287,15 +367,15 @@ public class BokingAdmin extends AppCompatActivity {
 
 
                 Log.d("onClick", "onClick: idMobil" + IDMobil);
-                if(penjemputan.isEmpty()){
+                if (penjemputan.isEmpty()) {
                     editPenjemputan.setError("penjemputan tidak boleh kosong");
                 } else if (NamaBose.isEmpty()) {
                     jam.setError("Pilih jam penjemputam");
-                }else if (NamaBose.isEmpty()) {
+                } else if (NamaBose.isEmpty()) {
                     editNama.setError("Nama tidak boleh kosong");
-                }else if (tujuan.isEmpty()) {
+                } else if (tujuan.isEmpty()) {
                     editTujuan.setError("tujuan tidak boleh kosong");
-                }else if (hpp.isEmpty()) {
+                } else if (hpp.isEmpty()) {
                     editHp.setError("Nomor tidak boleh kosong");
                 } else if (tglpinjam.isEmpty()) {
                     editTanggalpinjam.setError("pilih tanggal pinjam");
@@ -303,8 +383,8 @@ public class BokingAdmin extends AppCompatActivity {
                     editTanggalkembali.setError("pilih tanggal pinjam");
                 } else if (mobil.isEmpty()) {
                     editNamamobil.setError("pilih mobil yang diinginkan");
-                }else{
-                    db.collection("Data_Mobil").whereEqualTo("Nama",spinerr.getSelectedItem().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                } else {
+                    db.collection("Data_Mobil").whereEqualTo("Nama", spinerr.getSelectedItem().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
@@ -314,17 +394,19 @@ public class BokingAdmin extends AppCompatActivity {
                     });
                     Map<String, Object> user = new HashMap<>();
                     long hari = calculateTotalDays();
-                    user.put("JamBerangkat",jamberangkat);
-                    user.put("Namapemesan", NamaBose);
+                    Boolean mm =true;
+                    user.put("JamBerangkat", jamberangkat);
+                    user.put("NamaPenyewa", NamaBose);
                     user.put("Penjemputan", penjemputan);
                     user.put("Tujuan", tujuan);
-                    user.put("TanggalPinjam",tanggalPeminjaman);
+                    user.put("TanggalPinjam", tanggalPeminjaman);
                     user.put("TanggalKembali", tanggalPengembalian);
                     user.put("IDMobil", IDMobil);
-                    user.put("NoHp",hpp);
+                    user.put("NoHp", hpp);
+                    user.put("mimin", mm);
                     user.put("JumlahHari", hari);
 
-                    CollectionReference dbReff = db.collection("Boking_Admin");
+                    CollectionReference dbReff = db.collection("Booking");
 
 
                     dbReff.add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
@@ -333,13 +415,14 @@ public class BokingAdmin extends AppCompatActivity {
                             Intent intent = new Intent(BokingAdmin.this, RincianBokingAdmin.class);
                             intent.putExtra("Namapemesan", NamaBose);
                             intent.putExtra("JamBerangkat", jamberangkat);
-                            intent.putExtra("Tujuan",tujuan);
-                            intent.putExtra("TanggalPinjam",tglpinjam );
+                            intent.putExtra("Tujuan", tujuan);
+                            intent.putExtra("TanggalPinjam", tglpinjam);
                             intent.putExtra("TanggalKembali", tglkembali);
                             intent.putExtra("IDMobil", IDMobil);
                             intent.putExtra("JumlahHari", hari);
-                            intent.putExtra("NoHp",hpp);
-                            intent.putExtra("DocumentID",task.getResult().getId());
+                            intent.putExtra("mimin",mm);
+                            intent.putExtra("NoHp", hpp);
+                            intent.putExtra("DocumentID", task.getResult().getId());
 //                            intent.putExtra("DocumentID",task.getResult().getId());
                             startActivity(intent);
                             finish();
@@ -348,7 +431,6 @@ public class BokingAdmin extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }
+

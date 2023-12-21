@@ -31,7 +31,7 @@ Button tambahjadwal;
         recyclerView = findViewById(R.id.rvRiwayat);
         String firebaseUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        Query query = FirebaseFirestore.getInstance().collection("Boking_Admin");
+        Query query = FirebaseFirestore.getInstance().collection("Booking");
 
 
         FirestoreRecyclerOptions<RiwayatBokingAdminModel> option = new FirestoreRecyclerOptions.Builder<RiwayatBokingAdminModel>()

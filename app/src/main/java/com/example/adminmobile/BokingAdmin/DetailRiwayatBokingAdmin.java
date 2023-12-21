@@ -46,7 +46,7 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
 
 
 
-            db.collection("Boking_Admin").document(bundle.getString("uid")).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            db.collection("Booking").document(bundle.getString("uid")).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     tvjam.setText(documentSnapshot.get("JamBerangkat").toString());
@@ -56,7 +56,7 @@ public class DetailRiwayatBokingAdmin extends AppCompatActivity {
                     tvTujuan.setText(documentSnapshot.get("Tujuan").toString());
                     tvpenjemputan.setText(documentSnapshot.get("Penjemputan").toString());
                     tvTanggalkembali.setText(formatFirestoreTimestamp(documentSnapshot.getTimestamp("TanggalKembali")));
-                    tvNama.setText(documentSnapshot.get("Namapemesan").toString());
+                    tvNama.setText(documentSnapshot.get("NamaPenyewa").toString());
                     tvTotal.setText(documentSnapshot.get("Total").toString());
 
                     db.collection("Data_Mobil").document(documentSnapshot.get("IDMobil").toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

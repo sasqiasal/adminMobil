@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -51,13 +52,22 @@ public class RincianBokingAdmin extends AppCompatActivity {
 
 
 
+
         Auth = FirebaseAuth.getInstance();
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Log.d("MainActivity", "handleOnBackPressed");
+                deletketikagagal();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String bookingUid = getIntent().getStringExtra("DocumentID");
 
-        DocumentReference reff = db.collection("Boking_Admin").document(bookingUid);
+        DocumentReference reff = db.collection("Booking").document(bookingUid);
 
         reff.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -92,7 +102,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
 
         simpan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                DocumentReference bookingRef = FirebaseFirestore.getInstance().collection("Boking_Admin").document(bookingUid);
+                DocumentReference bookingRef = FirebaseFirestore.getInstance().collection("Booking").document(bookingUid);
                 String jmlh = total.getText().toString().trim();
 
                 bookingRef
@@ -113,7 +123,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
             }
         });
 
-        DocumentReference dbReff = db.collection("Boking_Admin").document(bookingUid );
+        DocumentReference dbReff = db.collection("Booking").document(bookingUid );
         dbReff.get().addOnSuccessListener(documentSnapshot -> {
             Timestamp TglP = documentSnapshot.getTimestamp("TanggalPinjam");
             Timestamp TglK = documentSnapshot.getTimestamp("TanggalKembali");
@@ -154,7 +164,7 @@ public class RincianBokingAdmin extends AppCompatActivity {
         String bookingUid = getIntent().getStringExtra("DocumentID");
 
 // Create a reference to the "Booking" document using the UID
-        DocumentReference bookingRef = db.collection("Boking_Admin").document(bookingUid);
+        DocumentReference bookingRef = db.collection("Booking").document(bookingUid);
 
 // Delete the document
         bookingRef.delete()

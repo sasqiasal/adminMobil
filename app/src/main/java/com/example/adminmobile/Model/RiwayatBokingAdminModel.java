@@ -11,7 +11,7 @@ public class RiwayatBokingAdminModel {
     String Total;
     String Tujuan;
     @DocumentId
-    String UID;
+    String DocumentID;
     String JamBerangkat;
     int JumlahHari;
     Timestamp TanggalKembali, TanggalPinjam;
@@ -26,7 +26,6 @@ public class RiwayatBokingAdminModel {
         this.Penjemputan = "";
         this.Total = "";
         this.Tujuan = "";
-        this.UID = "";
         this.TanggalKembali = null;
         this.TanggalPinjam = null;
     }
@@ -92,17 +91,31 @@ public class RiwayatBokingAdminModel {
         Tujuan = tujuan;
     }
 
-    public String getUID() {
-        return UID;
+    public String getDocumentID() {
+        return DocumentID;
     }
 
-    public void setUID(String UID) {
-        this.UID = UID;
+    public void setDocumentID(String documentID) {
+        this.DocumentID = documentID;
     }
     public Timestamp getTanggalPinjam() {return TanggalPinjam;}
 
     public void setTanggalPinjam(Timestamp tanggalPinjam) {
         TanggalPinjam = tanggalPinjam;
+    }
+
+    private boolean isMimin;
+
+    // Konstruktor dan metode lainnya...
+
+    // Getter untuk field "isMimin"
+    public boolean isMimin() {
+        return isMimin;
+    }
+
+    // Setter untuk field "isMimin"
+    public void setMimin(boolean isMimin) {
+        this.isMimin = isMimin;
     }
 
 
